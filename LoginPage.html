@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhamma Nature - Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0000;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      color: #333;
+    }
+
+    /* Main Sanctuary */
+    .sanctuary {
+      display: flex;
+      width: 95%;
+      max-width: 1400px;
+      height: 800px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 7px solid #d4a373;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Meditation Image */
+    .meditation-image {
+      flex: 1.2;
+      background-color: #0000;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 33px;
+    }
+
+    .meditation-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Dharma Form */
+    .dharma-form {
+      flex: 0.8;
+      padding: 43px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 30px;
+      background: #ffffff;
+    }
+
+    /* Logo Display */
+    .logo-display {
+      text-align: center;
+    }
+
+    .logo-display img {
+      max-width: 180px;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    /* Welcome Message */
+    .welcome-message {
+      font-size: 1.5em;
+      color: #555;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* Input Fields */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      position: relative;
+    }
+
+    .input-group label {
+      font-size: 1em;
+      color: #999;
+      font-weight: 500;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group input {
+      padding: 15px 15px 15px 40px;
+      font-size: 1em;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      width: 100%;
+    }
+
+    .input-group .input-icon {
+      position: absolute;
+      left: 12px;
+      font-size: 18px;
+      color: #666;
+      transition: color 0.3s;
+    }
+
+    .input-group input:focus {
+      border-color: #277946;
+      box-shadow: 0 0 5px rgba(39, 121, 70, 0.5);
+    }
+
+    .input-group input:focus + .input-icon {
+      color: #277946;
+    }
+
+    /* Forgot Password */
+    .forgot-password {
+      text-align: right;
+      margin-top: -10px;
+    }
+
+    .forgot-password a {
+      color: #277946;
+      text-decoration: none;
+      font-size: 0.9em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+
+    .forgot-password a i {
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .forgot-password a:hover, .forgot-password a:hover i {
+      color: #1e6b39;
+      text-decoration: underline;
+    }
+
+    /* Login Button */
+    .login-btn {
+      background-color: #d32f2f;
+      color: #fff;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .login-btn i {
+      font-size: 18px;
+    }
+
+    .login-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    .login-btn:hover i {
+      color: #fff;
+    }
+
+    /* Signup Section */
+    .signup-section {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+    }
+
+    .signup-section span {
+      color: #555;
+      font-size: 0.9em;
+    }
+
+    .signup-section a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+
+    .signup-section a i {
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .signup-section a:hover, .signup-section a:hover i {
+      color: #1e6b39;
+      text-decoration: underline;
+    }
+
+    /* Divider and Google Login */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .divider hr {
+      flex: 1;
+      border: 0;
+      height: 1px;
+      background: #ccc;
+    }
+
+    .divider span {
+      color: #555;
+      font-size: 0.9em;
+    }
+
+    .google-btn {
+      background-color: #d8d6d6;
+      color: #333;
+      padding: 12px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      font-size: 1em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      transform: translateY(-20px);
+    }
+
+    .google-btn i {
+      font-size: 20px;
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    .google-btn:hover {
+      background-color: #c8c6c6;
+    }
+
+    .google-btn:hover i {
+      color: #277946;
+    }
+
+    /* New Password Modal */
+    .new-password-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .new-password-form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+    }
+
+    .new-password-form h2 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .new-password-form h2 i {
+      font-size: 20px;
+      color: #277946;
+    }
+
+    .new-password-form .input-group {
+      margin-bottom: 20px;
+    }
+
+    .new-password-form .input-group input {
+      width: 100%;
+      padding: 15px 15px 15px 40px;
+    }
+
+    .new-password-form button {
+      background-color: #277946;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .new-password-form button i {
+      font-size: 18px;
+    }
+
+    .new-password-form button:hover {
+      background-color: #1e6b39;
+    }
+
+    .new-password-form button:hover i {
+      color: #fff;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #666;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+      color: #000;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .sanctuary {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .meditation-image {
+        height: 300px;
+        padding: 20px;
+      }
+
+      .dharma-form {
+        padding: 20px;
+      }
+
+      .new-password-form {
+        padding: 20px;
+      }
+    }
+  </style>
+  <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgaurabbdr5527back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body>
+  <div class="sanctuary">
+    <div class="meditation-image">
+      <img src="assets/images/pexels-eky-rima-nurya-ganda-174710171-15147310.jpg" alt="Meditation Image" />
+    </div>
+    <div class="dharma-form">
+      <div class="logo-display">
+        <img src="assets/images/logo.png" alt="Dhamma Nature Logo" />
+      </div>
+      <div class="welcome-message"><i class="fas fa-door-open"></i> Welcome back! Please enter your details.</div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" id="email" placeholder="Email" required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <div class="forgot-password">
+          <a href="#" onclick="showNewPasswordForm()"><i class="fas fa-key"></i> Forgot password</a>
+        </div>
+      </div>
+      <button class="login-btn" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> Log in</button>
+      <div class="signup-section">
+        <span>Don't have an account?</span> <a href="SignUpPage.html"><i class="fas fa-user-plus"></i> Sign up</a>
+      </div>
+      <div class="divider">
+        <hr><span>OR</span><hr>
+      </div>
+      <button class="google-btn" onclick="handleGoogleLogin()">
+        <i class="fab fa-google"></i>
+        <span>Login with Google</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- New Password Modal -->
+  <div class="new-password-modal" id="newPasswordModal">
+    <div class="new-password-form">
+      <i class="fas fa-times-circle close-modal" onclick="hideNewPasswordForm()"></i>
+      <h2><i class="fas fa-lock"></i> Create New Password</h2>
+      <div class="input-group">
+        <label for="newPassword">New Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="newPassword" placeholder="Enter new password" required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="confirmPassword" placeholder="Confirm new password" required>
+        </div>
+      </div>
+      <button onclick="saveNewPassword()"><i class="fas fa-save"></i> Save New Password</button>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      console.log('Login attempt:', { email, password });
+      window.location.href = 'home.html'; // Replace 'dashboard.html' with the URL or path of the target pag
+    }
+
+    function handleGoogleLogin() {
+      console.log('Google login attempt');
+    }
+
+    document.querySelectorAll('.input-group input').forEach(input => {
+      input.addEventListener('blur', function() {
+        if (this.value.trim() === '') {
+          this.style.borderColor = '#ff6b6b';
+          this.previousElementSibling.style.color = '#ff6b6b';
+        } else {
+          this.style.borderColor = '#277946';
+          this.previousElementSibling.style.color = '#277946';
+        }
+      });
+    });
+
+    function showNewPasswordForm() {
+      document.getElementById('newPasswordModal').style.display = 'flex';
+    }
+
+    function hideNewPasswordForm() {
+      document.getElementById('newPasswordModal').style.display = 'none';
+    }
+
+    function saveNewPassword() {
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (!newPassword || !confirmPassword) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+
+      if (newPassword.length < 6) {
+        alert('Password must be at least 6 characters long');
+        return;
+      }
+
+      console.log('New password saved:', newPassword);
+      alert('Password has been successfully updated');
+      hideNewPasswordForm();
+    }
+  </script>
+</body>
+</html>

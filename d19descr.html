@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dharma Club - Sermon Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Gentium+Basic:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Gentium Plus", "Gentium Basic", "Roboto", Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        /* Header Image and Hero Section Styling */
+        .header-img {
+            position: relative;
+            height: 720px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('assets/images/pexels-2152214764-32117889.jpg') no-repeat center;
+            background-size: cover;
+        }
+
+        .line-container {
+            position: absolute;
+            top: 52px;
+            width: 80%;
+            margin: 14px auto;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .white-line {
+            border-top: 1px solid #fff;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header-top {
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            font-weight: normal;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .location {
+            margin: 0;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .justify-content-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .justify-content-center:hover {
+            background-color: #006015;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .justify-content-center i {
+            font-size: 20px;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            color: #fff;
+            width: 100%;
+            max-width: 1200px;
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .header-main .logo {
+            height: 180px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        .header-main .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 22px;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        nav a.donate-btn {
+            background-color: #065B0B;
+            padding: 8px 20px;
+            border-radius: 56px;
+            color: #fff;
+            border: 1px solid #006015;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a.donate-btn:hover {
+            background-color: #008000;
+            transform: scale(1.05);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Sermon Detail Styles */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #1a252f;
+            font-weight: 600;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .sermon-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sermon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .sermon-image img:hover {
+            opacity: 0.95;
+        }
+
+        .sermon-details {
+            padding: 0 15px;
+        }
+
+        .sermon-details .date {
+            font-size: 1em;
+            color: #4a6572;
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .sermon-details .time {
+            font-size: 0.9em;
+            color: #4a6572;
+            margin-bottom: 10px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .sermon-details .speaker {
+            font-size: 0.9em;
+            color: #4a6572;
+            margin-bottom: 10px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .sermon-details .description {
+            font-size: 1em;
+            color: #444;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .actions button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            background-color: #006015;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .actions button:hover {
+            background-color: #004d13;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding: 40px 20px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .footer-sec2 {
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .white-line-footer {
+            width: 80%;
+            border-top: 1px solid #fff;
+            margin: 20px auto;
+        }
+
+        .part1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .part1 img {
+            padding-top: 20px;
+            width: 260px;
+            height: 190px;
+        }
+
+        .part1-desc {
+            padding: 20px;
+            width: 400px;
+            font-weight: normal;
+            font-size: 16px;
+            text-align: center;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .part2 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part2 h2 {
+            padding-top: 16px;
+            font-size: 24px;
+            color: #ffd700;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .part2-desc {
+            padding-top: 20px;
+            font-weight: normal;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .part2-desc a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .part2-desc a:hover {
+            color: #ffd700;
+        }
+
+        .part3 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part3 h2 {
+            padding-top: 16px;
+            font-size: 24px;
+            color: #ffd700;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .part3-desc {
+            padding-top: 20px;
+            font-weight: normal;
+            padding-right: 20px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .copyright {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px 240px;
+            margin-bottom: 40px;
+        }
+
+        .copyright-sub {
+            display: flex;
+            gap: 40px;
+        }
+
+        .copyright-sub h4 {
+            transition: color 0.3s;
+            font-size: 14px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .copyright-sub h4:hover {
+            color: #ffd700;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #006015;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #005c14;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .header-img {
+                height: 600px;
+            }
+            .header-main .logo {
+                height: 150px;
+            }
+            .container {
+                max-width: 700px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-img {
+                height: 500px;
+            }
+            .header-top {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .social-media {
+                justify-content: center;
+            }
+            .header-main {
+                padding: 10px 20px;
+                justify-content: space-between;
+            }
+            .header-main .logo {
+                height: 120px;
+            }
+            nav {
+                display: none;
+            }
+            nav.active {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                transform: translateX(0);
+                z-index: 999;
+            }
+            nav a {
+                margin: 15px 0;
+                font-size: 18px;
+                width: 100%;
+                padding: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            .hamburger {
+                display: block;
+                margin-left: auto;
+            }
+            .container {
+                margin: 20px 10px;
+                padding: 15px;
+            }
+            .header h1 {
+                font-size: 1.5em;
+            }
+            .sermon-image {
+                height: 200px;
+            }
+            .actions button {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-img {
+                height: 450px;
+            }
+            .header-main .logo {
+                height: 100px;
+            }
+            .header h1 {
+                font-size: 1.3em;
+            }
+            .sermon-image {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header-img {
+                height: 400px;
+            }
+            .header-main .logo {
+                height: 80px;
+            }
+            .header h1 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Parse sermon data from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const sermon = {
+                date: urlParams.get('date'),
+                time: urlParams.get('time'),
+                title: urlParams.get('title'),
+                speaker: urlParams.get('speaker'),
+                image: urlParams.get('image'),
+                description: urlParams.get('description')
+            };
+
+            // Populate page with sermon details
+            document.getElementById('sermonTitle').textContent = sermon.title || 'Sermon Title';
+            document.getElementById('sermonImage').innerHTML = `<img src="${sermon.image || 'assets/images/pexels-cryschanxanhy-29547000.jpg'}" alt="${sermon.title || 'Sermon'}">`;
+            document.getElementById('sermonDate').textContent = `Date: ${sermon.date ? new Date(sermon.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A'}`;
+            document.getElementById('sermonTime').textContent = `Time: ${sermon.time || 'N/A'}`;
+            document.getElementById('sermonSpeaker').textContent = `Speaker: ${sermon.speaker || 'N/A'}`;
+            document.getElementById('sermonDescription').textContent = sermon.description || 'No description available.';
+
+            // Hamburger Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav a:not(.donate-btn)');
+
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    nav.classList.toggle('active');
+                    hamburger.classList.toggle('fa-bars');
+                    hamburger.classList.toggle('fa-times');
+
+                    navLinks.forEach((link, index) => {
+                        if (nav.classList.contains('active')) {
+                            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                        } else {
+                            link.style.animation = 'none';
+                        }
+                    });
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    hamburger.classList.remove('fa-times');
+                    hamburger.classList.add('fa-bars');
+                    navLinks.forEach(link => link.style.animation = 'none');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    hamburger.classList.remove('fa-times');
+                    hamburger.classList.add('fa-bars');
+                    navLinks.forEach(link => link.style.animation = 'none');
+                }
+            });
+
+            // Smooth Scroll for Internal Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Back to Top Button
+            const backToTop = document.createElement('button');
+            backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            backToTop.className = 'back-to-top';
+            document.body.appendChild(backToTop);
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+
+            // Add animation keyframes
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = `
+                @keyframes navLinkFade {
+                    from { opacity: 0; transform: translateX(50px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+                .back-to-top {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background-color: #006015;
+                    color: #fff;
+                    border: none;
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                    transition: background-color 0.3s, transform 0.3s;
+                    z-index: 1000;
+                }
+                .back-to-top:hover {
+                    background-color: #005c14;
+                    transform: scale(1.1);
+                }
+            `;
+            document.head.appendChild(styleSheet);
+        });
+
+        // Navigation
+        function goBack() {
+            window.history.back();
+        }
+
+        // Add to Calendar
+        function addToCalendar() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const title = urlParams.get('title') || 'Sermon';
+            const date = urlParams.get('date') || 'N/A';
+            alert(`Added ${title} on ${date} to your calendar!`);
+        }
+    </script>
+    <header>
+        <div class="header-img">
+            <div class="line-container">
+                <hr class="white-line">
+            </div>
+            <div class="header-top">
+                <p class="location">
+                    203 Fake St. Mountain View, San Francisco, California, USA
+                </p>
+                <div class="social-media">
+                    <a href="https://www.facebook.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-facebook-f"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-twitter"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-instagram"></i><span class="sr-only">Instagram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="header-main">
+                <img src="assets/images/transparent_logo.png" alt="Dharma Club Logo" class="logo">
+                <nav>
+                    <a href="home.html" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#sermons" class="nav-link">Sermons</a>
+                    <a href="index-events.html" class="nav-link">Events</a>
+                    <a href="index-blog.html" class="nav-link">Blog</a>
+                    <a href="index-contact.html" class="nav-link">Contact</a>
+                    <a href="sermon-detail.html" class="nav-link">Discuss</a>
+                    <a href="12d grok.html" class="nav-link donate-btn">Donate</a>
+                </nav>
+                <a href="#" class="hamburger"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="header">
+                <h1 id="sermonTitle"></h1>
+            </div>
+            <div class="sermon-image" id="sermonImage"></div>
+            <div class="sermon-details">
+                <div class="date" id="sermonDate"></div>
+                <div class="time" id="sermonTime"></div>
+                <div class="speaker" id="sermonSpeaker"></div>
+                <div class="description" id="sermonDescription"></div>
+            </div>
+            <div class="actions">
+                <button class="back-btn" onclick="goBack()">Back</button>
+                <button onclick="addToCalendar()">Add to Calendar</button>
+            </div>
+        </div>
+    </main>
+    <div class="footer">
+        <div class="part1">
+            <img src="assets/images/transparent_logo.png" alt="logo" width="260px" height="190px">
+            <div class="part1-desc">
+                <h4>Two similes are useful to keep in mind when we look at the Two similes are useful to keep in mind when we look at..</h4>
+            </div>
+        </div>
+        <div class="part2">
+            <h2>QUICK LINKS</h2>
+            <div class="part2-desc">
+                <h4><a href="index1_final.html">Home</a></h4>
+                <h4><a href="#about">About</a></h4>
+                <h4><a href="#sermons">Sermons</a></h4>
+                <h4><a href="index-events.html">Events</a></h4>
+            </div>
+        </div>
+        <div class="part3">
+            <h2>HAVE A QUESTION?</h2>
+            <div class="part3-desc">
+                <h4>203 Fake St. Mountain View, San Francisco, California, USA</h4>
+                <h4>+977 97820099</h4>
+                <h4>info@gmail.com</h4>
+            </div>
+        </div>
+    </div>
+    <div class="footer-sec2">
+        <div class="line">
+            <hr class="white-line-footer">
+        </div>
+        <div class="copyright">
+            <h4>Copyright@2024 Dhamma Nature, All Rights Reserved</h4>
+            <div class="copyright-sub">
+                <h4><a href="#terms">Terms & Conditions</a></h4>
+                <h4><a href="#privacy">Privacy Policy</a></h4>
+                <h4><a href="#refund">Cancellation & Refund Policy</a></h4>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

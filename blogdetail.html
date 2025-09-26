@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dharma Club - Blog Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+Devanagari:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Gentium Plus", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header-main .logo {
+            height: 180px;
+            width: auto;
+            padding-left: 190px;
+        }
+
+        .header-img {
+            height: 400px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .line-container {
+            position: absolute;
+            top: 40px;
+            color: rgb(255, 255, 255);
+            width: 80%;
+            margin: 14px 230px;
+        }
+
+        .white-line {
+            border-top: 1px solid white;
+            width: 90%;
+            margin-left: 30px;
+        }
+
+        .header-top {
+            color: #fff;
+            padding: 5px 310px;
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            font-weight: normal;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .justify-content-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid white;
+            border-radius: 50%;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .justify-content-center:hover {
+            background-color: #006015;
+            color: white;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            color: white;
+            width: 100%;
+            padding-right: 260px;
+            position: absolute;
+            top: 20px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 22px;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        nav a.donate-btn {
+            background-color: #065B0B;
+            padding: 5px 15px;
+            border-radius: 56px;
+            color: #fff;
+            border: #006015;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        nav a.donate-btn:hover {
+            background-color: #008000;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding: 40px 0;
+            background-color: black;
+            color: white;
+        }
+
+        .footer-sec2 {
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            color: white;
+        }
+
+        .white-line-footer {
+            width: 80%;
+            border-top: 1px solid white;
+            margin: 20px auto;
+        }
+
+        .part1, .part2, .part3 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .part1 img {
+            width: 260px;
+            height: 190px;
+            margin-bottom: 20px;
+        }
+
+        .part1-desc, .part2-desc, .part3-desc {
+            font-weight: normal;
+        }
+
+        .part1-desc {
+            padding: 0 20px;
+            width: 300px;
+        }
+
+        .part2, .part3 {
+            padding-left: 50px;
+        }
+
+        .part2 h2, .part3 h2 {
+            margin-bottom: 20px;
+        }
+
+        .part2-desc h4, .part3-desc h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .part2-desc h4 i, .part3-desc h4 i {
+            font-size: 16px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .part2-desc h4:hover i, .part3-desc h4:hover i {
+            color: #ffd700;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 240px;
+            align-items: center;
+        }
+
+        .copyright-sub {
+            display: flex;
+            gap: 40px;
+        }
+
+        .copyright-sub h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .copyright-sub h4 i {
+            font-size: 14px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .copyright-sub h4:hover, .copyright-sub h4:hover i {
+            color: #ffd700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-content {
+            flex: 2;
+        }
+
+        .blog-header {
+            margin-bottom: 30px;
+        }
+
+        .blog-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .blog-meta {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .blog-content {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .blog-content p {
+            margin-bottom: 20px;
+        }
+
+        .blog-content img {
+            width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .author-info img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .author-info .author-details h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .author-info .author-details p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .comments-section {
+            margin-top: 40px;
+        }
+
+        .comments-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .comment-form button {
+            background-color: #0F5128;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            cursor: pointer;
+            border-radius: 7px;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comment-form button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: #005a10;
+            width: 600px;
+            max-width: 90%;
+            padding: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.3s ease;
+        }
+
+        .modal-content .leave-a-comment {
+            font-family: "Gentium Plus", Helvetica;
+            font-weight: 700;
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-content label {
+            font-family: "Gentium Plus", Helvetica;
+            font-weight: 400;
+            color: #ffffff;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .modal-content textarea,
+        .modal-content input[type="text"],
+        .modal-content input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-family: "Gentium Plus", Helvetica;
+            font-size: 14px;
+            background-color: #ffffff;
+        }
+
+        .modal-content textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="email"] {
+            height: 40px;
+        }
+
+        .modal-content .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .modal-content .checkbox-group label {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .modal-content .post-comment {
+            background-color: #963D3D;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: "Gentium Plus", Helvetica;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            float: right;
+        }
+
+        .modal-content .post-comment:hover {
+            background-color: #7a2f2f;
+            transform: scale(1.05);
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-content .close-button:hover {
+            color: #ffcccc;
+        }
+
+        .comment-list {
+            list-style: none;
+        }
+
+        .comment-list li {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .comment-list .comment-author {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comment-list .comment-author i {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .comment-list .reply-email {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .comment-list .reply-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #006C04;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .comment-list .reply-btn:hover {
+            color: #008000;
+        }
+
+        .sidebar {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .sidebar h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar ul li a i {
+            font-size: 16px;
+            color: #7f8c8d;
+            transition: color 0.3s;
+        }
+
+        .sidebar ul li a:hover, .sidebar ul li a:hover i {
+            color: #006C04;
+        }
+
+        .newsletter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(255, 208, 0);
+            width: 100%;
+            margin: 40px 0;
+            padding: 20px 40px;
+            border-radius: 18px;
+            color: black;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            transform: translateY(70px);
+        }
+
+        .newsletter h2 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .form-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .email-input {
+            width: 300px;
+            height: 40px;
+            font-size: 16px;
+            padding: 10px 10px 10px 35px;
+            border-radius: 58px;
+            border: none;
+            margin-right: 10px;
+            transition: box-shadow 0.3s;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%237f8c8d" class="bi bi-envelope" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>') no-repeat 10px center;
+            background-size: 16px;
+        }
+
+        .email-input:hover, .email-input:focus {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            outline: none;
+        }
+
+        .button-last {
+            width: 140px;
+            height: 42px;
+            background-color: #006226;
+            color: white;
+            border-radius: 58px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .button-last:hover {
+            background-color: #008000;
+            transform: scale(1.05);
+        }
+
+        .hero .container h1 {
+            padding-left: 510px;
+            font-size: 52px;
+            position: relative;
+            transform: translateY(-210px);
+            color: #ffffff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-img {
+                height: 300px;
+            }
+            .header-main {
+                flex-direction: column;
+                padding: 10px;
+                top: 20px;
+            }
+            .header-main .logo {
+                padding-left: 0;
+                margin-bottom: 10px;
+            }
+            nav {
+                margin-top: 0;
+                justify-content: center;
+            }
+            .container {
+                padding: 0 10px;
+            }
+            .blog-title {
+                font-size: 28px;
+            }
+            .author-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            .author-info img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .newsletter-container {
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+            .form-container {
+                margin-top: 20px;
+            }
+            .footer {
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+            .part2, .part3 {
+                padding-left: 0;
+                margin-top: 20px;
+            }
+            .copyright {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-img">
+            <img src="assets/images/pexels-2152214764-32117889.jpg" alt="Header Image">
+            <div class="line-container">
+                <hr class="white-line">
+            </div>
+            <div class="header-top">
+                <p class="location">
+                    203 Fake St. Mountain View, San Francisco, California, USA
+                </p>
+                <div class="social-media">
+                    <a href="https://www.facebook.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-facebook-f"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-twitter"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-instagram"></i><span class="sr-only">Instagram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="header-main">
+                <img src="assets/images/transparent_logo.png" alt="Dharma Club Logo" class="logo">
+                <nav>
+                    <a href="home.html">Home</a>
+                    <a href="home.html">About</a>
+                    <a href="#">Sermons</a>
+                    <a href="#">Events</a>
+                    <a href="index.html">Blog</a>
+                    <a href="#">Contact</a>
+                    <a href="#" class="donate-btn">Donate</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 class="mb-3">BLOG</h1>
+            </div>
+        </section>
+        <div class="container">
+            <div class="main-content">
+                <div class="blog-header">
+                    <h1 class="blog-title">Building a Healthy Lifestyle</h1>
+                    <div class="blog-meta">Published on August 28, 2025 at 03:21 PM +0545 by Ajahn Brahm</div>
+                </div>
+                <div class="blog-content">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <img src="https://via.placeholder.com/600x300?text=Healthy+Lifestyle" alt="Healthy Lifestyle Image">
+                    <p>It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                    <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+                </div>
+                <div class="author-info">
+                    <img src="assets/images/pexels-eky-rima-nurya-ganda-174710171-15147310.jpg" alt="Author Image">
+                    <div class="author-details">
+                        <h3>Ajahn Brahm</h3>
+                        <p>A renowned meditation teacher with over 30 years of experience guiding others toward mindfulness and inner peace.</p>
+                    </div>
+                </div>
+                <div class="comments-section">
+                    <h2>Comments</h2>
+                    <div class="comment-form">
+                        <button type="button" onclick="showCommentModal()"><i class="fas fa-comment"></i> Add Comment</button>
+                    </div>
+                    <ul id="commentList" class="comment-list">
+                        <li>
+                            <div class="comment-author">John Doe <i class="fas fa-clock"></i><span style="font-size: 12px; color: #7f8c8d;">(August 28, 2025 03:21 PM +0545)</span></div>
+                            <p>Great article! Really helpful insights into building a healthy lifestyle.</p>
+                            <p class="reply-email">Posted by: john.doe@example.com</p>
+                            <button class="reply-btn"><i class="fas fa-reply"></i> Reply</button>
+                        </li>
+                        <li>
+                            <div class="comment-author">Jane Smith <i class="fas fa-clock"></i><span style="font-size: 12px; color: #7f8c8d;">(August 28, 2025 03:22 PM +0545)</span></div>
+                            <p>Thank you for sharing such valuable tips. Looking forward to more!</p>
+                            <p class="reply-email">Posted by: jane.smith@example.com</p>
+                            <button class="reply-btn"><i class="fas fa-reply"></i> Reply</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar">
+                <h3>Related Topics</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-utensils"></i> Mindful Eating Habits</a></li>
+                    <li><a href="#"><i class="fas fa-spa"></i> Daily Meditation Routines</a></li>
+                    <li><a href="#"><i class="fas fa-child-pose"></i> Yoga for Beginners</a></li>
+                </ul>
+                <h3>Recent Posts</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-dove"></i> Inner Peace Journey</a></li>
+                    <li><a href="#"><i class="fas fa-brain"></i> Meditation Techniques</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="newsletter-container">
+            <div class="newsletter">
+                <h2>Sign Up And Subscribe to our Newsletter</h2>
+            </div>
+            <div class="form-container">
+                <form action="#" method="post">
+                    <input type="email" placeholder="Enter your email" required class="email-input">
+                    <button type="submit" class="button-last"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="part1">
+                <img src="assets/images/transparent_logo.png" alt="logo" width="260px" height="190px">
+                <div class="part1-desc">
+                    <h4>Two similes are useful to keep in mind when we look at the Two similes are useful to keep in mind when we look at..</h4>
+                </div>
+            </div>
+            <div class="part2">
+                <h2>QUICK LINKS</h2>
+                <div class="part2-desc">
+                    <h4><i class="fas fa-home"></i> <a href="index.html">Home</a></h4>
+                    <h4><i class="fas fa-info-circle"></i> <a href="#">About</a></h4>
+                    <h4><i class="fas fa-pray"></i> <a href="#">Sermons</a></h4>
+                    <h4><i class="fas fa-calendar"></i> <a href="#">Events</a></h4>
+                </div>
+            </div>
+            <div class="part3">
+                <h2>HAVE A QUESTION?</h2>
+                <div class="part3-desc">
+                    <h4><i class="fas fa-map-marker-alt"></i> 203 Fake St. Mountain View, San Francisco, California, USA</h4>
+                    <h4><i class="fas fa-phone"></i> +977 97820099</h4>
+                    <h4><i class="fas fa-envelope"></i> info@gmail.com</h4>
+                </div>
+            </div>
+        </div>
+        <div class="footer-sec2">
+            <div class="line">
+                <hr class="white-line-footer">
+            </div>
+            <div class="copyright">
+                <h4>Copyright@2024 Dhamma Nature, All Rights Reserved</h4>
+                <div class="copyright-sub">
+                    <h4><i class="fas fa-file-alt"></i> <a href="#terms">Terms & Conditions</a></h4>
+                    <h4><i class="fas fa-shield-alt"></i> <a href="#privacy">Privacy Policy</a></h4>
+                    <h4><i class="fas fa-undo"></i> <a href="#refund">Cancellation & Refund Policy</a></h4>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Comment Modal -->
+    <div class="modal" id="commentModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeCommentModal()">×</button>
+            <div class="leave-a-comment">Leave a Comment</div>
+            <div class="form-group">
+                <label for="commentText">Comment *</label>
+                <textarea id="commentText" placeholder="Write your comment here..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nameInput">Name *</label>
+                <input type="text" id="nameInput" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label for="emailInput">Email *</label>
+                <input type="email" id="emailInput" placeholder="Your email">
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="saveInfo">
+                <label for="saveInfo">Save my name and email in this browser for the next time I comment.</label>
+            </div>
+            <button class="post-comment" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <script>
+        // Load comments from localStorage on page load
+        let comments = JSON.parse(localStorage.getItem('comments')) || [
+            { author: 'John Doe', text: 'Great article! Really helpful insights into building a healthy lifestyle.', timestamp: 'August 28, 2025 03:21 PM +0545', email: 'john.doe@example.com' },
+            { author: 'Jane Smith', text: 'Thank you for sharing such valuable tips. Looking forward to more!', timestamp: 'August 28, 2025 03:22 PM +0545', email: 'jane.smith@example.com' }
+        ];
+
+        // Show comment modal
+        function showCommentModal() {
+            document.getElementById('commentModal').style.display = 'flex';
+            document.getElementById('commentText').focus();
+        }
+
+        // Close comment modal
+        function closeCommentModal() {
+            document.getElementById('commentModal').style.display = 'none';
+            document.getElementById('commentText').value = '';
+            document.getElementById('nameInput').value = localStorage.getItem('commentName') || '';
+            document.getElementById('emailInput').value = localStorage.getItem('commentEmail') || '';
+            document.getElementById('saveInfo').checked = !!localStorage.getItem('commentName');
+        }
+
+        // Submit comment function
+        function submitComment() {
+            const commentText = document.getElementById('commentText').value.trim();
+            const name = document.getElementById('nameInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            const saveInfo = document.getElementById('saveInfo').checked;
+
+            if (!commentText || !name || !email) {
+                alert('Please fill in all required fields: Comment, Name, and Email.');
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const timestamp = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kathmandu', hour12: true });
+            const newComment = { author: name, text: commentText, timestamp, email };
+            comments.push(newComment);
+
+            // Save comments and info to localStorage
+            localStorage.setItem('comments', JSON.stringify(comments));
+            if (saveInfo) {
+                localStorage.setItem('commentName', name);
+                localStorage.setItem('commentEmail', email);
+            } else {
+                localStorage.removeItem('commentName');
+                localStorage.removeItem('commentEmail');
+            }
+
+            renderComments();
+            closeCommentModal();
+        }
+
+        // Render comments to the DOM
+        function renderComments() {
+            const commentList = document.getElementById('commentList');
+            commentList.innerHTML = '';
+            comments.forEach(comment => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="comment-author">
+                        ${comment.author} <i class="fas fa-clock"></i><span style="font-size: 12px; color: #7f8c8d;">(${comment.timestamp})</span>
+                    </div>
+                    <p>${comment.text}</p>
+                    <p class="reply-email">Posted by: ${comment.email}</p>
+                    <button class="reply-btn"><i class="fas fa-reply"></i> Reply</button>
+                `;
+                commentList.appendChild(li);
+            });
+        }
+
+        // Load saved info on page load
+        window.addEventListener('load', () => {
+            const savedName = localStorage.getItem('commentName');
+            const savedEmail = localStorage.getItem('commentEmail');
+            if (savedName) document.getElementById('nameInput').value = savedName;
+            if (savedEmail) document.getElementById('emailInput').value = savedEmail;
+            if (savedName && savedEmail) document.getElementById('saveInfo').checked = true;
+            renderComments();
+        });
+
+        // Optional: Add event listener for Enter key
+        document.getElementById('commentText').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                submitComment();
+            }
+        });
+    </script>
+</body>
+</html>

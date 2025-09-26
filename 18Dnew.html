@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Dharma Club</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Gentium+Basic:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+Devanagari:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        /* [Your existing CSS styles remain unchanged] */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Gentium Plus", "Gentium Basic", sans-serif;
+        }
+
+        body {
+            font-family: 'Gentium Basic', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .header-img {
+            position: relative;
+            height: 900px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: brightness(0.7);
+        }
+
+        .header-img img:hover {
+            transform: scale(1.02);
+        }
+
+        .hero {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 900px;
+            padding: 0 20px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            z-index: 10;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.4;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .line-container {
+            position: absolute;
+            top: 80px;
+            width: 80%;
+            margin: 14px 10%;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .white-line {
+            border-top: 1px solid #fff;
+            width: 100%;
+            margin-left: 30px;
+        }
+
+        .header-top {
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            font-weight: normal;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1500px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .location {
+            margin: 0;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .justify-content-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .justify-content-center:hover {
+            background-color: #006015;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            color: #fff;
+            width: 100%;
+            max-width: 1500px;
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .header-main .logo {
+            height: 180px;
+            width: auto;
+            transition: transform 0.3s;
+            margin-top: 60px;
+        }
+
+        .header-main .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 22px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        nav a.donate-btn {
+            background-color: #065B0B;
+            padding: 5px 15px;
+            border-radius: 56px;
+            color: #fff;
+            border: 1px solid #006015;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a.donate-btn:hover {
+            background-color: #008000;
+            transform: scale(1.05);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger:hover {
+            transform: rotate(90deg);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .header {
+            width: 100%;
+            height: 200px;
+            background: url('assets/images/pexels-2152214764-32117889.jpg') no-repeat center;
+            background-size: cover;
+            position: relative;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 500;
+            font-family: 'Gentium Plus', serif;
+        }
+
+        .search-nav {
+            width: 100%;
+            background-color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 30%;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            flex: 1;
+            transition: border-color 0.3s ease;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .search-bar input:focus {
+            border-color: #963D3D;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            background-color: #963D3D;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #7a2f2f;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-tabs button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #f5f7fa;
+            color: #333;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .nav-tabs button:hover {
+            background-color: rgba(150, 61, 61, 0.1);
+        }
+
+        .nav-tabs .active {
+            background-color: #963D3D;
+            color: #fff;
+        }
+
+        .nav-controls {
+            width: 100%;
+            padding: 15px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-controls .date-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-controls button {
+            padding: 8px 15px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            background-color: #963D3D;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .nav-controls button:hover {
+            background-color: #7a2f2f;
+        }
+
+        .nav-controls .date-display {
+            font-size: 1.1em;
+            color: #666;
+            font-weight: 500;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .event-list {
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-date {
+            font-size: 1.5em;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid #963D3D;
+            font-family: 'Gentium Plus', serif;
+        }
+
+        .event-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px;
+            background-color: #fafafa;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .event-item:hover {
+            box-shadow: 0 3px 10px rgba(150, 61, 61, 0.1);
+        }
+
+        .event-details {
+            flex: 3;
+            padding-right: 15px;
+        }
+
+        .event-details .date {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .event-details .title {
+            font-size: 1.4em;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 5px;
+            transition: color 0.2s ease;
+            font-family: 'Gentium Plus', serif;
+        }
+
+        .event-item:hover .event-details .title {
+            color: #963D3D;
+        }
+
+        .event-details .time {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .event-details .location {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .event-details .price {
+            font-size: 1.1em;
+            color: #963D3D;
+            font-weight: 600;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .event-image {
+            width: 200px;
+            height: 150px;
+            border-radius: 5px;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.2s ease;
+        }
+
+        .event-item:hover .event-image img {
+            opacity: 0.9;
+        }
+
+        .pagination-controls {
+            width: 100%;
+            padding: 15px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination-controls a {
+            color: #666;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .pagination-controls a:hover {
+            color: #963D3D;
+        }
+
+        .pagination-controls .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .pagination-controls button {
+            padding: 8px 15px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            background-color: #963D3D;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .pagination-controls button:hover {
+            background-color: #7a2f2f;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding: 40px 20px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .footer-sec2 {
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .white-line-footer {
+            width: 80%;
+            border-top: 1px solid #fff;
+            margin: 20px auto;
+        }
+
+        .part1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .part1 img {
+            padding-top: 20px;
+            width: 260px;
+            height: 190px;
+        }
+
+        .part1-desc {
+            padding: 20px;
+            width: 400px;
+            font-weight: normal;
+            font-size: 16px;
+            text-align: center;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .part2 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part2 h2 {
+            padding-top: 16px;
+            font-size: 24px;
+            color: #ffd700;
+            font-family: 'Gentium Plus', serif;
+        }
+
+        .part2-desc {
+            padding-top: 20px;
+            font-weight: normal;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .part2-desc a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .part2-desc a:hover {
+            color: #ffd700;
+        }
+
+        .part3 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part3 h2 {
+            padding-top: 16px;
+            font-size: 24px;
+            color: #ffd700;
+            font-family: 'Gentium Plus', serif;
+        }
+
+        .part3-desc {
+            padding-top: 20px;
+            font-weight: normal;
+            padding-right: 20px;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .copyright {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px 240px;
+            margin-bottom: 40px;
+            font-family: 'Gentium Basic', serif;
+        }
+
+        .copyright-sub {
+            display: flex;
+            gap: 40px;
+        }
+
+        .copyright-sub h4 {
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .copyright-sub h4:hover {
+            color: #ffd700;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #006015;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #005c14;
+        }
+
+        @media (max-width: 1700px) {
+            .header-img {
+                height: 800px;
+            }
+            .header-top {
+                padding: 10px 20px;
+            }
+            .hero {
+                max-width: 700px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 1400px) {
+            .header-img {
+                height: 700px;
+            }
+            .header-top {
+                padding: 10px 20px;
+            }
+            .hero {
+                max-width: 600px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .header-main .logo {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .header-img {
+                height: 600px;
+            }
+            .header-top {
+                padding: 10px 20px;
+            }
+            .social-media {
+                gap: 8px;
+            }
+            .line-container {
+                top: 80px;
+                width: 80%;
+                margin: 14px 10%;
+            }
+            .white-line {
+                width: 100%;
+                margin-left: 30px;
+            }
+            .justify-content-center {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            .header-main {
+                padding: 10px 20px;
+                justify-content: space-between;
+            }
+            .header-main .logo {
+                height: 120px;
+            }
+            nav {
+                display: none;
+            }
+            nav.active {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                transform: translateX(0);
+                z-index: 999;
+            }
+            nav a {
+                margin: 15px 0;
+                font-size: 18px;
+                width: 100%;
+                padding: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            .hamburger {
+                display: block;
+                margin-left: auto;
+            }
+            .hero {
+                max-width: 500px;
+                top: 60%;
+            }
+            .hero p {
+                font-size: 14px;
+            }
+            .search-bar {
+                width: 50%;
+            }
+            .search-bar input, .search-bar button {
+                font-size: 0.9em;
+                padding: 8px;
+            }
+            .nav-tabs button {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+            .nav-controls button {
+                font-size: 0.9em;
+                padding: 6px 12px;
+            }
+            .nav-controls .date-display {
+                font-size: 1em;
+            }
+            .event-item {
+                flex-direction: column;
+                align-items: center;
+            }
+            .event-details {
+                padding-right: 0;
+                text-align: center;
+            }
+            .event-image {
+                width: 100%;
+                height: 150px;
+                margin-top: 10px;
+            }
+            .pagination-controls button {
+                font-size: 0.9em;
+                padding: 6px 12px;
+            }
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+            }
+            .part1, .part2, .part3 {
+                padding-left: 0;
+            }
+            .copyright {
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+            }
+            .copyright-sub {
+                flex-direction: column;
+                gap: 10px;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-img {
+                height: 500px;
+            }
+            .header-top {
+                padding: 10px 20px;
+                top: 10px;
+            }
+            .social-media {
+                gap: 10px;
+            }
+            .justify-content-center {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            .header-main {
+                padding: 10px 20px;
+                justify-content: space-between;
+            }
+            .header-main .logo {
+                height: 100px;
+            }
+            .hamburger {
+                display: block;
+                margin-left: auto;
+            }
+            .hero {
+                top: 65%;
+            }
+            .hero p {
+                font-size: 13px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-img {
+                height: 450px;
+            }
+            .header-top {
+                top: 4px;
+            }
+            .social-media {
+                gap: 8px;
+            }
+            .justify-content-center {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+            }
+            .header-main {
+                padding: 10px 20px;
+                justify-content: space-between;
+            }
+            .header-main .logo {
+                height: 80px;
+            }
+            .hamburger {
+                display: block;
+                margin-left: auto;
+            }
+            nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+            nav.active {
+                display: flex;
+                transform: translateX(0);
+            }
+            .nav-tabs button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            nav a {
+                margin: 15px 0;
+                font-size: 18px;
+                width: 100%;
+                padding: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            .hero {
+                top: 70%;
+                padding: 0 15px;
+            }
+            .hero p {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-img {
+                height: 400px;
+            }
+            .hero {
+                top: 75%;
+                padding: 0 10px;
+            }
+            .hero p {
+                font-size: 11px;
+            }
+            .header-main .logo {
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header-img {
+                height: 350px;
+            }
+            .hero {
+                top: 80%;
+            }
+            .hero p {
+                font-size: 10px;
+            }
+            .header-main .logo {
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav a:not(.donate-btn)');
+
+            // Hamburger Menu Functionality
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    nav.classList.toggle('active');
+                    hamburger.classList.toggle('fa-bars');
+                    hamburger.classList.toggle('fa-times');
+
+                    navLinks.forEach((link, index) => {
+                        if (nav.classList.contains('active')) {
+                            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                        } else {
+                            link.style.animation = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Close menu when a nav link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    hamburger.classList.remove('fa-times');
+                    hamburger.classList.add('fa-bars');
+                    navLinks.forEach(link => link.style.animation = 'none');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    hamburger.classList.remove('fa-times');
+                    hamburger.classList.add('fa-bars');
+                    navLinks.forEach(link => link.style.animation = 'none');
+                }
+            });
+
+            // Smooth Scroll for Internal Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Animate elements on scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.event-list');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('animate__fadeInUp');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Parallax Effect for Header Image
+            window.addEventListener('scroll', () => {
+                const headerImg = document.querySelector('.header-img img');
+                const scrollPosition = window.pageYOffset;
+                headerImg.style.transform = `translateY(${scrollPosition * 0.3}px) scale(1.02)`;
+            });
+
+            // Back to Top Button
+            const backToTop = document.createElement('button');
+            backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            backToTop.className = 'back-to-top';
+            document.body.appendChild(backToTop);
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+
+            // Events Hub Script
+            let currentDate = new Date('2025-08-31T17:26:00+0545');
+            const dateDisplay = document.getElementById('dateDisplay');
+            const eventList = document.getElementById('eventList');
+            let currentView = 'find';
+
+            function updateDate() {
+                dateDisplay.textContent = `Now - ${currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+            }
+
+            function navigate(direction) {
+                if (direction === 'prev') currentDate.setDate(currentDate.getDate() - 1);
+                else if (direction === 'next') currentDate.setDate(currentDate.getDate() + 1);
+                else currentDate = new Date('2025-08-31T17:26:00+0545');
+                updateDate();
+                filterEvents();
+            }
+
+            const events = [
+                { date: '2025-09-01', time: 'Aug 25, 2025 @ 09:23 PM - Aug 27, 2025 @ 06:00 PM', title: 'Summer Dhamma Retreat', location: 'Dhamma Center, New York, NY, United States', price: '$175', image: 'assets/images/pexels-ajaybhargavguduru-939700.jpg', description: 'Join us for a serene weekend of meditation and dhamma teachings in the heart of New York.' },
+                { date: '2025-09-02', time: 'Aug 26, 2025 @ 07:00 PM - Aug 28, 2025 @ 05:00 PM', title: 'Mindfulness Workshop', location: 'Brooklyn Dhamma Hall, NY, United States', price: '$250', image: 'assets/images/pexels-caleboquendo-3030090.jpg', description: 'Explore mindfulness practices and dhamma insights at our iconic Brooklyn venue.' }
+            ];
+
+            function renderEvents() {
+                console.log('Rendering events with images:', events.map(e => e.image));
+                eventList.innerHTML = '';
+                let currentMonthYear = '';
+                events.forEach((event, index) => {
+                    const eventMonthYear = new Date(event.date).toLocaleString('en-US', { month: 'long', year: 'numeric' });
+                    if (eventMonthYear !== currentMonthYear) {
+                        const dateHeader = document.createElement('div');
+                        dateHeader.className = 'event-date';
+                        dateHeader.textContent = eventMonthYear;
+                        eventList.appendChild(dateHeader);
+                        currentMonthYear = eventMonthYear;
+                    }
+                    const eventItem = document.createElement('div');
+                    eventItem.className = 'event-item';
+                    eventItem.innerHTML = `
+                        <div class="event-details">
+                            <div class="date">${new Date(event.date).toLocaleString('en-US', { weekday: 'short', day: 'numeric' })}</div>
+                            <div class="time">${event.time}</div>
+                            <div class="title">${event.title}</div>
+                            <div class="location">${event.location}</div>
+                            <div class="price">${event.price}</div>
+                        </div>
+                        <div class="event-image">
+                            <img src="${event.image}" alt="${event.title}" onerror="this.src='assets/images/transparent_logo.png'">
+                        </div>
+                    `;
+                    eventList.appendChild(eventItem);
+                });
+                // Add click event listeners after rendering
+                document.querySelectorAll('.event-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const topicText = item.querySelector('.title').textContent.trim();
+                        if (topicText === 'Summer Dhamma Retreat') {
+                            const eventParams = new URLSearchParams({
+                                title: topicText,
+                                date: '2025-09-01',
+                                time: 'Aug 25, 2025 @ 09:23 PM - Aug 27, 2025 @ 06:00 PM',
+                                location: 'Dhamma Center, New York, NY, United States',
+                                price: '$175',
+                                image: 'assets/images/pexels-ajaybhargavguduru-939700.jpg',
+                                description: 'Join us for a serene weekend of meditation and dhamma teachings in the heart of New York.'
+                            });
+                            window.location.href = `18Ddescrip.html?${eventParams.toString()}`;
+                        } else {
+                            console.log(`${topicText} clicked`);
+                        }
+                    });
+                });
+            }
+
+            function filterEvents() {
+                const month = currentDate.toLocaleString('en-US', { month: 'long' });
+                const year = currentDate.getFullYear();
+                document.querySelectorAll('.event-item').forEach(item => {
+                    const itemDate = new Date(item.querySelector('.date').textContent.split(' ')[1] + ' ' + month + ' ' + year);
+                    const itemMonth = itemDate.toLocaleString('en-US', { month: 'long' });
+                    const itemYear = itemDate.getFullYear();
+                    item.style.display = (itemMonth === month && itemYear === year) ? 'flex' : 'none';
+                });
+                document.querySelectorAll('.event-date').forEach(date => {
+                    const dateText = date.textContent.split(' ');
+                    const dateMonth = dateText[0];
+                    const dateYear = dateText[1];
+                    date.style.display = (dateMonth === month && dateYear == year) ? 'block' : 'none';
+                });
+            }
+
+            function searchEvents() {
+                const searchTerm = document.getElementById('eventSearch').value.toLowerCase();
+                const items = document.querySelectorAll('.event-item');
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+                });
+            }
+
+            function setView(view) {
+                currentView = view;
+                document.querySelectorAll('.nav-tabs button').forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`.nav-tabs button[onclick="setView('${view}')"]`).classList.add('active');
+                renderEvents();
+            }
+
+            function loadPreviousEvents() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderEvents();
+                }
+            }
+
+            function loadNextEvents() {
+                currentPage++;
+                renderEvents();
+            }
+
+            function addToCalendar() {
+                const visibleEvents = document.querySelectorAll('.event-item[style="display: flex;"]');
+                if (visibleEvents.length > 0) {
+                    const event = events.find(e => e.date === visibleEvents[0].querySelector('.date').textContent.split(' ')[1]);
+                    alert(`Added ${event.title} on ${event.date} to your calendar!`);
+                } else {
+                    alert('No event selected to add to calendar.');
+                }
+            }
+
+            // Initial Render
+            renderEvents();
+            updateDate();
+        });
+
+        // Add animation keyframes for nav links and other elements
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes navLinkFade {
+                from {
+                    opacity: 0;
+                    transform: translateX(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            .animate__fadeInUp {
+                animation: fadeInUp 0.6s ease forwards;
+            }
+            .back-to-top {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #006015;
+                color: #fff;
+                border: none;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                transition: background-color 0.3s, transform 0.3s;
+                z-index: 1000;
+            }
+            .back-to-top:hover {
+                background-color: #005c14;
+                transform: scale(1.1);
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+    <header>
+        <div class="header-img" id="hero">
+            <img src="assets/images/pexels-2152214764-32117889.jpg" alt="Header Image">
+            <div class="hero">
+                <p class="mb-4">
+                    UPCOMING EVENTS
+                </p>
+            </div>
+            <div class="line-container">
+                <hr class="white-line">
+            </div>
+            <div class="header-top">
+                <p class="location">
+                    203 Fake St. Mountain View, San Francisco, California, USA
+                </p>
+                <div class="social-media">
+                    <a href="https://www.facebook.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-facebook-f"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-twitter"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-instagram"></i><span class="sr-only">Instagram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="header-main">
+                <img src="assets/images/transparent_logo.png" alt="Dharma Club Logo" class="logo">
+                <nav>
+                    <a href="index1_final.html" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#sermons" class="nav-link">Sermons</a>
+                    <a href="index-events.html" class="nav-link">Events</a>
+                    <a href="index-blog.html" class="nav-link">Blog</a>
+                    <a href="index-contact.html" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">Discuss</a>
+                    <a href="12d grok.html" class="nav-link donate-btn">Donate</a>
+                </nav>
+                <a href="#" class="hamburger"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="sermons" id="sermons">
+            <div class="container">
+                <div class="search-nav">
+                    <div class="search-bar">
+                        <input type="text" id="eventSearch" placeholder="Search events...">
+                        <button onclick="searchEvents()">Search</button>
+                    </div>
+                    <div class="nav-tabs">
+                        <button class="active" onclick="setView('find')">Find Events</button>
+                        <button onclick="setView('list')">List View</button>
+                        <button onclick="setView('day')">Day View</button>
+                        <button onclick="setView('month')">Month View</button>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <div class="date-nav">
+                        <button onclick="navigate('prev')">&larr; Previous</button>
+                        <button onclick="navigate('today')">Today</button>
+                        <button onclick="navigate('next')">Next &rarr;</button>
+                    </div>
+                    <div class="date-display" id="dateDisplay">Now - Aug 31, 2025</div>
+                </div>
+                <div class="event-list" id="eventList">
+                    <div class="event-date">September 2025</div>
+                    <div class="event-item" onclick="showEventDetail(0)">
+                        <div class="event-details">
+                            <div class="date">Mon 1</div>
+                            <div class="time">Aug 25, 2025 @ 09:23 PM - Aug 27, 2025 @ 06:00 PM</div>
+                            <div class="title">Summer Dhamma Retreat</div>
+                            <div class="location">Dhamma Center, New York, NY, United States</div>
+                            <div class="price">$175</div>
+                        </div>
+                        <div class="event-image">
+                            <img src="assets/images/pexels-ajaybhargavguduru-939700.jpg" alt="Summer Dhamma Retreat" onerror="this.src='assets/images/transparent_logo.png'">
+                        </div>
+                    </div>
+                    <div class="event-item" onclick="showEventDetail(1)">
+                        <div class="event-details">
+                            <div class="date">Tue 2</div>
+                            <div class="time">Aug 26, 2025 @ 07:00 PM - Aug 28, 2025 @ 05:00 PM</div>
+                            <div class="title">Mindfulness Workshop</div>
+                            <div class="location">Brooklyn Dhamma Hall, NY, United States</div>
+                            <div class="price">$250</div>
+                        </div>
+                        <div class="event-image">
+                            <img src="assets/images/pexels-caleboquendo-3030090.jpg" alt="Mindfulness Workshop" onerror="this.src='assets/images/transparent_logo.png'">
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-controls">
+                    <a href="#" onclick="loadPreviousEvents()">Previous Events</a>
+                    <div class="nav-buttons">
+                        <button onclick="loadNextEvents()">Next</button>
+                        <button onclick="addToCalendar()">Add to Calendar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="footer">
+        <div class="part1">
+            <img src="assets/images/transparent_logo.png" alt="logo" width="260px" height="190px">
+            <div class="part1-desc">
+                <h4>Two similes are useful to keep in mind when we look at the Two similes are useful to keep in mind when we look at..</h4>
+            </div>
+        </div>
+        <div class="part2">
+            <h2>QUICK LINKS</h2>
+            <div class="part2-desc">
+                <h4><a href="index1_final.html">Home</a></h4>
+                <h4><a href="#about">About</a></h4>
+                <h4><a href="#sermons">Sermons</a></h4>
+                <h4><a href="index-events.html">Events</a></h4>
+            </div>
+        </div>
+        <div class="part3">
+            <h2>HAVE A QUESTION?</h2>
+            <div class="part3-desc">
+                <h4>203 Fake St. Mountain View, San Francisco, California, USA</h4>
+                <h4>+977 97820099</h4>
+                <h4>info@gmail.com</h4>
+            </div>
+        </div>
+    </div>
+    <div class="footer-sec2">
+        <div class="line">
+            <hr class="white-line-footer">
+        </div>
+        <div class="copyright">
+            <h4>Copyright@2024 Dhamma Nature, All Rights Reserved</h4>
+            <div class="copyright-sub">
+                <h4><a href="#terms">Terms & Conditions</a></h4>
+                <h4><a href="#privacy">Privacy Policy</a></h4>
+                <h4><a href="#refund">Cancellation & Refund Policy</a></h4>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

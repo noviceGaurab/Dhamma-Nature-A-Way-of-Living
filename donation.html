@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dharma Club - Donation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Gentium+Basic:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Gentium Plus", "Gentium Basic", "Roboto", Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header-img {
+            position: relative;
+            height: 720px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('assets/images/pexels-2152214764-32117889.jpg') no-repeat center;
+            background-size: cover;
+        }
+
+        .line-container {
+            position: absolute;
+            top: 52px;
+            width: 80%;
+            margin: 14px auto;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .white-line {
+            border-top: 1px solid #fff;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header-top {
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            font-weight: normal;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .location {
+            margin: 0;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .justify-content-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .justify-content-center:hover {
+            background-color: #006015;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .justify-content-center i {
+            font-size: 20px;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            color: #fff;
+            width: 100%;
+            max-width: 1200px;
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .header-main .logo {
+            height: 180px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        .header-main .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 22px;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        nav a.donate-btn {
+            background-color: #065B0B;
+            padding: 8px 20px;
+            border-radius: 56px;
+            color: #fff;
+            border: 1px solid #006015;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a.donate-btn:hover {
+            background-color: #008000;
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            padding: 10px 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #006015;
+            color: #ffd700;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger:hover {
+            transform: rotate(90deg);
+        }
+
+        .donation-container {
+            background: linear-gradient(90deg, #e0eafc, #cfdef3);
+            padding: 40px 20px;
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .donation-content {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch;
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 120% 100%, 0 100%);
+            transition: transform 0.3s ease;
+        }
+
+        .donation-content:hover {
+            transform: translateY(-10px);
+        }
+
+        .donation-header {
+            flex: 0 0 25%;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .donation-header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #1a252f;
+            margin-bottom: 20px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .donation-header p {
+            color: #4a6572;
+            font-size: 1.2em;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .donation-content-section {
+            flex: 0 0 70%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch;
+            padding: 20px;
+        }
+
+        .donation-image-section {
+            flex: 0 0 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .donation-image {
+            width: 100%;
+            height: 400px;
+            background: url('assets/images/pexels-ajaybhargavguduru-939700.jpg') no-repeat center;
+            background-size: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .donation-image:hover {
+            transform: scale(1.03);
+        }
+
+        .donation-info {
+            flex: 0 0 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .donation-info-top {
+            flex: 1;
+        }
+
+        .donation-goal {
+            font-size: 1.8em;
+            color: #006015;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background-color: #e9ecef;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #2ecc71;
+            border-radius: 12px;
+            width: 35%;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1em;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .donation-description {
+            font-size: 1.1em;
+            color: #4a6572;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .amount-section {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .amount-section span {
+            font-size: 1.4em;
+            color: #1a252f;
+            font-weight: 500;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        #amount {
+            width: 150px;
+            padding: 15px;
+            font-size: 1.2em;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        #amount:focus {
+            border-color: #006015;
+            box-shadow: 0 0 8px rgba(0, 96, 21, 0.3);
+        }
+
+        .amount-btn {
+            padding: 15px 30px;
+            border: 2px solid #e9ecef;
+            background-color: #ffffff;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .amount-btn:hover {
+            background-color: #006015;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .personal-info {
+            margin-top: 20px;
+        }
+
+        .personal-info h3 {
+            font-size: 1.6em;
+            color: #1a252f;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .personal-info input,
+        .personal-info textarea {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .personal-info input:focus,
+        .personal-info textarea:focus {
+            border-color: #006015;
+            box-shadow: 0 0 8px rgba(0, 96, 21, 0.3);
+            outline: none;
+        }
+
+        .personal-info label {
+            font-size: 1.1em;
+            color: #4a6572;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 500;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .personal-info textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .donate-now-btn {
+            background-color: #006015;
+            color: #ffffff;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.3em;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .donate-now-btn:hover {
+            background-color: #004d13;
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding: 40px 20px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .footer-sec2 {
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .white-line-footer {
+            width: 80%;
+            border-top: 1px solid #fff;
+            margin: 20px auto;
+        }
+
+        .part1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .part1 img {
+            padding-top: 20px;
+            width: 260px;
+            height: 190px;
+        }
+
+        .part1-desc {
+            padding: 20px;
+            width: 400px;
+            font-weight: normal;
+            font-size: 16px;
+            text-align: center;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .part2 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part2 h2 {
+            padding-top: 16px;
+            font-size: 24px;
+            color: #ffd700;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .part2-desc {
+            padding-top: 20px;
+            font-weight: normal;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .part2-desc a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .part2-desc a:hover {
+            color: #ffd700;
+        }
+
+        .part3 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part3 h2 {
+            padding-top: 16px;
+            font-size: 24px;
+            color: #ffd700;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .part3-desc {
+            padding-top: 20px;
+            font-weight: normal;
+            padding-right: 20px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .copyright {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px 240px;
+            margin-bottom: 40px;
+        }
+
+        .copyright-sub {
+            display: flex;
+            gap: 40px;
+        }
+
+        .copyright-sub h4 {
+            transition: color 0.3s;
+            font-size: 14px;
+            font-family: "Gentium Basic", Helvetica;
+        }
+
+        .copyright-sub h4:hover {
+            color: #ffd700;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #006015;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #005c14;
+        }
+
+        @media (max-width: 1200px) {
+            .header-img {
+                height: 600px;
+            }
+            .header-main .logo {
+                height: 150px;
+            }
+            .donation-content {
+                flex-direction: column;
+                align-items: center;
+                padding: 30px;
+            }
+            .donation-header {
+                flex: none;
+                margin-bottom: 20px;
+            }
+            .donation-content-section {
+                flex: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+            .donation-image-section {
+                flex: none;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .donation-image {
+                height: 300px;
+            }
+            .donation-info {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-img {
+                height: 500px;
+            }
+            .header-top {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .social-media {
+                justify-content: center;
+            }
+            .header-main {
+                padding: 10px 20px;
+                justify-content: space-between;
+            }
+            .header-main .logo {
+                height: 120px;
+            }
+            nav {
+                display: none;
+            }
+            nav.active {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                transform: translateX(0);
+                z-index: 999;
+            }
+            nav a {
+                margin: 15px 0;
+                font-size: 18px;
+                width: 100%;
+                padding: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            .dropdown-content {
+                position: static;
+                background-color: rgba(255, 255, 255, 0.1);
+                box-shadow: none;
+                margin-left: 20px;
+                padding: 10px 0;
+            }
+            .dropdown-content a {
+                font-size: 16px;
+                padding: 8px 20px;
+            }
+            .hamburger {
+                display: block;
+                margin-left: auto;
+            }
+            .donation-content {
+                padding: 20px;
+            }
+            .donation-header h1 {
+                font-size: 2em;
+            }
+            .donation-goal {
+                font-size: 1.5em;
+            }
+            .amount-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            #amount {
+                width: 100%;
+            }
+            .donation-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-img {
+                height: 450px;
+            }
+            .header-main .logo {
+                height: 100px;
+            }
+            .donation-header h1 {
+                font-size: 1.8em;
+            }
+            .donation-image {
+                height: 200px;
+            }
+            .donation-info-top {
+                padding: 10px 0;
+            }
+            .personal-info h3 {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header-img {
+                height: 400px;
+            }
+            .header-main .logo {
+                height: 80px;
+            }
+            .donation-header h1 {
+                font-size: 1.5em;
+            }
+            .donation-image {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav a:not(.donate-btn)');
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    nav.classList.toggle('active');
+                    hamburger.classList.toggle('fa-bars');
+                    hamburger.classList.toggle('fa-times');
+
+                    navLinks.forEach((link, index) => {
+                        if (nav.classList.contains('active')) {
+                            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                        } else {
+                            link.style.animation = 'none';
+                        }
+                    });
+
+                    dropdowns.forEach(dropdown => {
+                        const dropdownContent = dropdown.querySelector('.dropdown-content');
+                        dropdownContent.classList.remove('active');
+                    });
+                });
+            }
+
+            dropdowns.forEach(dropdown => {
+                const dropdownToggle = dropdown.querySelector('a');
+                const dropdownContent = dropdown.querySelector('.dropdown-content');
+
+                dropdownToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    dropdownContent.classList.toggle('active');
+
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.querySelector('.dropdown-content').classList.remove('active');
+                        }
+                    });
+
+                    if (nav.classList.contains('active') && window.innerWidth <= 1200) {
+                        nav.classList.remove('active');
+                        hamburger.classList.remove('fa-times');
+                        hamburger.classList.add('fa-bars');
+                        navLinks.forEach(link => link.style.animation = 'none');
+                    }
+                });
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (!link.parentElement.classList.contains('dropdown')) {
+                        nav.classList.remove('active');
+                        hamburger.classList.remove('fa-times');
+                        hamburger.classList.add('fa-bars');
+                        navLinks.forEach(link => link.style.animation = 'none');
+                        dropdowns.forEach(dropdown => {
+                            dropdown.querySelector('.dropdown-content').classList.remove('active');
+                        });
+                    }
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    nav.classList.remove('active');
+                    hamburger.classList.remove('fa-times');
+                    hamburger.classList.add('fa-bars');
+                    navLinks.forEach(link => link.style.animation = 'none');
+                    dropdowns.forEach(dropdown => {
+                        dropdown.querySelector('.dropdown-content').classList.remove('active');
+                    });
+                }
+            });
+
+            let donationAmount = 100;
+            const goal = 10000;
+            const progress = document.querySelector('.progress');
+            const progressText = document.querySelector('.progress-text');
+
+            function setAmount(value) {
+                if (value && !isNaN(value) && value > 0) {
+                    donationAmount = Math.min(parseInt(value), goal);
+                    document.getElementById('amount').value = donationAmount;
+                    updateProgress();
+                }
+            }
+
+            function updateProgress() {
+                const percentage = (donationAmount / goal) * 100;
+                progress.style.width = `${Math.min(percentage, 100)}%`;
+                progressText.textContent = `${Math.min(Math.round(percentage), 100)}%`;
+            }
+
+            document.getElementById('donationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const firstName = this.querySelector('input[placeholder="First Name"]').value;
+                const lastName = this.querySelector('input[placeholder="Last Name"]').value;
+                const email = this.querySelector('input[placeholder="Email Address"]').value;
+                const comment = this.querySelector('textarea').value;
+                const date = new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Asia/Kathmandu' });
+                const donationId = Math.floor(Math.random() * 1000) + 100;
+
+                if (firstName && lastName && email && donationAmount) {
+                    const params = new URLSearchParams({
+                        firstName: encodeURIComponent(firstName),
+                        lastName: encodeURIComponent(lastName),
+                        email: encodeURIComponent(email),
+                        amount: donationAmount,
+                        date: encodeURIComponent(date),
+                        donationId: donationId,
+                        comment: encodeURIComponent(comment || 'None'),
+                        paymentMethod: 'Test donation'
+                    });
+                    window.location.href = `complete_Donation.html?${params.toString()}`;
+                } else {
+                    alert('Please fill all required fields and enter a valid donation amount.');
+                }
+            });
+
+            updateProgress();
+        });
+
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes navLinkFade {
+                from { opacity: 0; transform: translateX(50px); }
+                to { opacity: 1; transform: translateX(0); }
+            }
+            .back-to-top {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #006015;
+                color: #fff;
+                border: none;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                transition: background-color 0.3s, transform 0.3s;
+                z-index: 1000;
+            }
+            .back-to-top:hover {
+                background-color: #005c14;
+                transform: scale(1.1);
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+    <header>
+        <div class="header-img">
+            <div class="line-container">
+                <hr class="white-line">
+            </div>
+            <div class="header-top">
+                <p class="location">
+                    203 Fake St. Mountain View, San Francisco, California, USA
+                </p>
+                <div class="social-media">
+                    <a href="https://www.facebook.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-facebook-f"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-twitter"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-instagram"></i><span class="sr-only">Instagram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="header-main">
+                <img src="assets/images/transparent_logo.png" alt="Dharma Club Logo" class="logo">
+                <nav>
+                    <a href="index1_final.html" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <div class="dropdown">
+                        <a href="#sermons" class="nav-link">Sermons</a>
+                        <div class="dropdown-content">
+                            <a href="#upcoming-sermons">Upcoming Sermons</a>
+                            <a href="#past-sermons">Past Sermons</a>
+                            <a href="#sermon-series">Sermon Series</a>
+                        </div>
+                    </div>
+                    <a href="index-events.html" class="nav-link">Events</a>
+                    <a href="index-blog.html" class="nav-link">Blog</a>
+                    <a href="index-contact.html" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">Discuss</a>
+                    <a href="12d grok.html" class="nav-link donate-btn">Donate</a>
+                </nav>
+                <a href="#" class="hamburger"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="donation-container">
+            <div class="donation-content">
+                <div class="donation-header">
+                    <h1>Donation</h1>
+                    <p>Your contribution changes lives!</p>
+                </div>
+                <div class="donation-content-section">
+                    <div class="donation-image-section">
+                        <div class="donation-image"></div>
+                    </div>
+                    <div class="donation-info">
+                        <div class="donation-info-top">
+                            <p class="donation-goal">Goal: $10,000</p>
+                            <div class="progress-bar">
+                                <div class="progress">
+                                    <span class="progress-text">35%</span>
+                                </div>
+                            </div>
+                            <p class="donation-description">
+                                Help us provide essential support to communities in need. Your contribution ensures food, education, and hope for a brighter future. Join our mission today!
+                            </p>
+                            <div class="amount-section">
+                                <span>$</span>
+                                <input type="number" id="amount" value="100" min="1">
+                                <button class="amount-btn" onclick="setAmount(10)">$10</button>
+                                <button class="amount-btn" onclick="setAmount(25)">$25</button>
+                                <button class="amount-btn" onclick="setAmount(50)">$50</button>
+                                <button class="amount-btn" onclick="setAmount(prompt('Enter custom amount:', 100))">Custom</button>
+                            </div>
+                        </div>
+                        <form class="personal-info" id="donationForm">
+                            <h3>Your Info</h3>
+                            <input type="text" placeholder="First Name" required>
+                            <input type="text" placeholder="Last Name" required>
+                            <input type="email" placeholder="Email Address" required>
+                            <label>Your Message</label>
+                            <textarea placeholder="Add a note..."></textarea>
+                            <button type="submit" class="donate-now-btn">Donate Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="footer">
+        <div class="part1">
+            <img src="assets/images/transparent_logo.png" alt="logo" width="260px" height="190px">
+            <div class="part1-desc">
+                <h4>Two similes are useful to keep in mind when we look at the Two similes are useful to keep in mind when we look at..</h4>
+            </div>
+        </div>
+        <div class="part2">
+            <h2>QUICK LINKS</h2>
+            <div class="part2-desc">
+                <h4><a href="index1_final.html">Home</a></h4>
+                <h4><a href="#about">About</a></h4>
+                <h4><a href="#sermons">Sermons</a></h4>
+                <h4><a href="index-events.html">Events</a></h4>
+            </div>
+        </div>
+        <div class="part3">
+            <h2>HAVE A QUESTION?</h2>
+            <div class="part3-desc">
+                <h4>203 Fake St. Mountain View, San Francisco, California, USA</h4>
+                <h4>+977 97820099</h4>
+                <h4>info@gmail.com</h4>
+            </div>
+        </div>
+    </div>
+    <div class="footer-sec2">
+        <div class="line">
+            <hr class="white-line-footer">
+        </div>
+        <div class="copyright">
+            <h4>Copyright@2024 Dhamma Nature, All Rights Reserved</h4>
+            <div class="copyright-sub">
+                <h4><a href="#terms">Terms & Conditions</a></h4>
+                <h4><a href="#privacy">Privacy Policy</a></h4>
+                <h4><a href="#refund">Cancellation & Refund Policy</a></h4>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

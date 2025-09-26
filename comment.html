@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discuss & Discover</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Gentium Basic', serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.4;
+            font-size: 16px;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            min-height: 100vh;
+            border: 1px solid #000000;
+            padding-top: 20px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 95%;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 40px;
+            text-align: left;
+            color: #000000;
+            margin-left: 40px;
+            gap: 20px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 30px;
+            margin-left: 0;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 25%;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 1px;
+            background-color: #ddd;
+        }
+
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item:hover {
+            background-color: #f8f8f8;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .nav-item i {
+            font-size: 16px;
+            color: #333;
+            margin-right: 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover i {
+            color: #006015;
+        }
+
+        .nav-item span {
+            font-size: 13px;
+            color: #333;
+        }
+
+        .divider {
+            background-color: #eee;
+            height: 1px;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .categories-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .categories-header i {
+            font-size: 16px;
+            color: #333;
+            margin-right: 8px;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .category-item:hover {
+            background-color: #f8f8f8;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .category-dot {
+            font-size: 10px;
+            color: #ff0000;
+            margin-right: 10px;
+        }
+
+        .tags-section {
+            width: 100%;
+        }
+
+        .tags-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tag-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .tag-item:hover {
+            background-color: #f8f8f8;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .tag-item i {
+            font-size: 16px;
+            color: #333;
+            margin-right: 12px;
+            transition: color 0.3s;
+        }
+
+        .tag-item:hover i {
+            color: #006015;
+        }
+
+        .vertical-divider {
+            background-color: #ddd;
+            width: 1px;
+            height: auto;
+            margin: 0 290px;
+        }
+
+        .right-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 70%;
+            margin-left: 300px;
+            transform: translateY(-610px);
+        }
+
+        .header-section {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .week-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .week-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .week-date {
+            font-size: 16px;
+            color: #666;
+            margin-left: 15px;
+        }
+
+        .dropdown-icon {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .users-count {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 300px;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        .discussion {
+            background-color: #fff;
+            padding: 25px;
+            border: none;
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .discussion-title {
+            font-size: 26px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .category-tag {
+            color: #ff0000;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-image: url('assets/images/pexels-ajaybhargavguduru-939700.jpg');
+            margin-right: 10px;
+        }
+
+        .post-author {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .post-content p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 20px;
+        }
+
+        .views {
+            flex: 1;
+        }
+
+        .likes {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .flag-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .reply-button {
+            background-color: #0F5128;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            cursor: pointer;
+            border-radius: 7px;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reply-button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .reply-item {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+        .reply-author {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reply-text {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+
+        .reply-email {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: #005a10;
+            width: 600px;
+            max-width: 90%;
+            padding: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.3s ease;
+        }
+
+        .modal-content .leave-a-comment {
+            font-family: "Gentium Basic-Bold", Helvetica;
+            font-weight: 700;
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-content label {
+            font-family: "Gentium Basic", Helvetica;
+            font-weight: 400;
+            color: #ffffff;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .modal-content textarea,
+        .modal-content input[type="text"],
+        .modal-content input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-family: "Gentium Basic", Helvetica;
+            font-size: 14px;
+            background-color: #ffffff;
+        }
+
+        .modal-content textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="email"] {
+            height: 40px;
+        }
+
+        .modal-content .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .modal-content .checkbox-group label {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .modal-content .post-comment {
+            background-color: #963D3D;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: "Gentium Basic-Bold", Helvetica;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            float: right;
+        }
+
+        .modal-content .post-comment:hover {
+            background-color: #7a2f2f;
+            transform: scale(1.05);
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-content .close-button:hover {
+            color: #ffcccc;
+        }
+
+        .header-img {
+            position: relative;
+            height: 700px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: brightness(0.7);
+        }
+
+        .header-img img:hover {
+            transform: scale(1.02);
+        }
+
+        .hero {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 900px;
+            padding: 0 20px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            z-index: 10;
+        }
+
+        .hero h2 {
+            font-size: 54px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: slideInLeft 0.8s ease forwards;
+            margin-top: 140px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.4;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .mb-0 {
+            margin-top: 40px;
+        }
+
+        .btn-primary {
+            background-color: #006015;
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 56px;
+            border: 1px solid #006015;
+            width: 280px;
+            margin: 0 auto;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .btn-primary:hover {
+            background-color: #005c14;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .line-container {
+            position: absolute;
+            top: 80px;
+            width: 80%;
+            margin: 14px 10%;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .white-line {
+            border-top: 1px solid #fff;
+            width: 100%;
+            margin-left: 30px;
+        }
+
+        .header-top {
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            font-weight: normal;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1500px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .location {
+            margin: 0;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .justify-content-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .justify-content-center:hover {
+            background-color: #006015;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            color: #fff;
+            width: 100%;
+            max-width: 1500px;
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .header-main .logo {
+            height: 180px;
+            width: auto;
+            transition: transform 0.3s;
+            margin-top: 60px;
+        }
+
+        .header-main .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 22px;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        nav a.donate-btn {
+            background-color: #065B0B;
+            padding: 5px 15px;
+            border-radius: 56px;
+            color: #fff;
+            border: 1px solid #006015;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a.donate-btn:hover {
+            background-color: #008000;
+            transform: scale(1.05);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger:hover {
+            transform: rotate(90deg);
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding: 40px 20px;
+            background-color: #000;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .footer-sec2 {
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .white-line-footer {
+            width: 80%;
+            border-top: 1px solid #fff;
+            margin: 20px auto;
+        }
+
+        .part1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .part1 img {
+            padding-top: 20px;
+            width: 260px;
+            height: 190px;
+        }
+
+        .part1-desc {
+            padding: 20px;
+            width: 400px;
+            font-weight: normal;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .part2 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part2 h2 {
+            padding-top: 16px;
+            font-size: 24px;
+            color: #ffd700;
+        }
+
+        .part2-desc {
+            padding-top: 20px;
+            font-weight: normal;
+        }
+
+        .part2-desc h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .part2-desc h4 i {
+            font-size: 16px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .part2-desc h4:hover i {
+            color: #ffd700;
+        }
+
+        .part2-desc a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .part2-desc a:hover {
+            color: #ffd700;
+        }
+
+        .part3 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part3 h2 {
+            padding-top: 16px;
+            font-size: 24px;
+            color: #ffd700;
+        }
+
+        .part3-desc {
+            padding-top: 20px;
+            font-weight: normal;
+            padding-right: 20px;
+        }
+
+        .part3-desc h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .part3-desc h4 i {
+            font-size: 16px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .part3-desc h4:hover i {
+            color: #ffd700;
+        }
+
+        .copyright {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px 240px;
+            margin-bottom: 40px;
+        }
+
+        .copyright-sub {
+            display: flex;
+            gap: 40px;
+        }
+
+        .copyright-sub h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .copyright-sub h4 i {
+            font-size: 14px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .copyright-sub h4:hover, .copyright-sub h4:hover i {
+            color: #ffd700;
+        }
+
+        .topic-list {
+            width: 100%;
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .topic-list h3 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #666;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .topic-header span {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .topic-header .replies {
+            flex: 0.5;
+        }
+
+        .topic-header .views {
+            flex: 0.5;
+        }
+
+        .topic-header .activity {
+            flex: 0.5;
+        }
+
+        .topic-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .topic-row:hover {
+            background-color: #f9f9f9;
+        }
+
+        .topic-name {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .topic-name i {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .replies, .views, .activity {
+            flex: 0.5;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 767px) {
+            .main-container {
+                padding: 10px;
+            }
+
+            .content-wrapper {
+                width: 100%;
+                padding: 0 10px;
+                margin-top: 20px;
+            }
+
+            .main-title {
+                font-size: 24px;
+                margin-left: 0;
+            }
+
+            .main-content {
+                flex-direction: column;
+                margin-left: 0;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding-left: 0;
+                margin-bottom: 30px;
+            }
+
+            .sidebar::before {
+                display: none;
+            }
+
+            .vertical-divider {
+                display: none;
+            }
+
+            .right-content {
+                width: 100%;
+                margin-left: 0;
+                transform: none;
+            }
+
+            .discussion {
+                padding: 15px;
+            }
+
+            .discussion-title {
+                font-size: 22px;
+            }
+
+            .topic-list h3 {
+                font-size: 18px;
+            }
+
+            .topic-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .replies, .views, .activity {
+                text-align: left;
+            }
+
+            .modal-content {
+                padding: 15px;
+            }
+
+            .modal-content textarea,
+            .modal-content input[type="text"],
+            .modal-content input[type="email"] {
+                width: 100%;
+            }
+
+            .modal-content .checkbox-group label {
+                font-size: 12px;
+            }
+
+            .modal-content .post-comment {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .part1, .part2, .part3 {
+                padding-left: 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .copyright {
+                padding: 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .sidebar {
+                width: 30%;
+            }
+
+            .right-content {
+                width: 65%;
+                margin-left: 250px;
+                transform: none;
+            }
+
+            .main-title {
+                font-size: 36px;
+            }
+
+            .modal-content {
+                width: 70%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .content-wrapper {
+                width: 90%;
+                padding: 0 40px;
+            }
+
+            .main-title {
+                font-size: 42px;
+            }
+
+            .sidebar {
+                width: 20%;
+            }
+
+            .right-content {
+                width: 75%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-img" id="hero">
+            <img src="assets/images/pexels-2152214764-32117889.jpg" alt="Header Image">
+            <div class="hero">
+                <h2>Discuss & Discover</h2>
+            </div>
+            <div class="line-container">
+                <hr class="white-line">
+            </div>
+            <div class="header-top">
+                <p class="location">
+                    203 Fake St. Mountain View, San Francisco, California, USA
+                </p>
+                <div class="social-media">
+                    <a href="https://www.facebook.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-facebook-f"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-twitter"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="justify-content-center">
+                        <i class="fab fa-instagram"></i><span class="sr-only">Instagram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="header-main">
+                <img src="assets/images/transparent_logo.png" alt="Dharma Club Logo" class="logo">
+                <nav>
+                    <a href="index1_final.html" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#sermons" class="nav-link">Sermons</a>
+                    <a href="index-events.html" class="nav-link">Events</a>
+                    <a href="index-blog.html" class="nav-link">Blog</a>
+                    <a href="index-contact.html" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">Discuss</a>
+                    <a href="12d grok.html" class="nav-link donate-btn">Donate</a>
+                </nav>
+                <a href="#" class="hamburger"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+    </header>    
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="main-content">
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <div class="nav-item">
+                            <i class="fas fa-book"></i>
+                            <span>Topics</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>FAQ</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Guidelines</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="fas fa-ellipsis-h"></i>
+                            <span>Roles</span>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="categories-header">
+                            <i class="fas fa-chevron-down"></i>
+                            <span>CATEGORIES</span>
+                        </div>
+                        <div class="category-item">
+                            <i class="fas fa-circle category-dot"></i>
+                            <span>Discussion</span>
+                        </div>
+                        <div class="category-item">
+                            <i class="fas fa-circle category-dot"></i>
+                            <span>Q & A</span>
+                        </div>
+                        <div class="category-item">
+                            <i class="fas fa-circle category-dot"></i>
+                            <span>Essays</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="fas fa-list"></i>
+                            <span>All categories</span>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="tags-section">
+                            <div class="tags-content">
+                                <div class="categories-header">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>TAGS</span>
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fas fa-tag"></i>
+                                    <span>bodhi</span>
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fas fa-tag"></i>
+                                    <span>ebt-translation</span>
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fas fa-tag"></i>
+                                    <span>pali</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vertical-divider hidden-mobile"></div>
+                <div class="right-content">
+                    <div class="discussion">
+                        <h2 class="discussion-title">No Experience Beyond the Five Aggregates <span class="category-tag">- Discussion</span></h2>
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="profile-icon"></div>
+                                <span class="post-author">Nikolas</span>
+                            </div>
+                            <div class="post-content">
+                                <p>Greeting friends,</p>
+                                <p>In my discussions with representatives of the eternalist wing in both Theravāda and Mahāyāna traditions, I've observed a recurring pattern in their arguments. At the core lies a central idea: the attempt to isolate or elevate a purified, transcendent aspect of personal existence—something presumably distinct from the general aggregates, sense bases, or elements.</p>
+                                <p>Thus, one of the most important questions for a correct understanding of the Dhamma is the firm recognition that the Buddha's teaching on the five khandhas (aggregates), ayatanas (sense bases), and dhatus (elements) is holistic—that it encompasses all aspects of experience without exception. It is not merely a description of the "lower," defiled, or dualistic part of reality, contrasted with some supposed higher, perfect, or even "absolute" layer that somehow escapes the framework of conditioned phenomena (dhammas).</p>
+                                <p>The aim of this post is to invite thoughtful responses and explore rational arguments and scriptural sources that can reliably affirm the holistic nature of the Buddha's teaching regarding the categories of experience and existence (aggregates, sense bases, elements, etc.).</p>
+                            </div>
+                        </div>
+                        <div class="post-stats">
+                            <span class="views">39 views</span>
+                            <span class="likes">3 ❤️</span>
+                            <img src="assets/images/pexels-koithyr-1360255.jpg" alt="Flag" class="flag-icon">
+                        </div>
+                        <button class="reply-button" onclick="showCommentModal()"><i class="fas fa-reply"></i> REPLY</button>
+                        <div class="replies-list">
+                            <!-- Dynamic replies will be added here -->
+                        </div>
+                    </div>
+                    <div class="topic-list">
+                        <h3>New & Unread Topics</h3>
+                        <div class="topic-header">
+                            <span class="topic-name"><i class="fas fa-comment"></i> TOPIC</span>
+                            <span class="replies"><i class="fas fa-reply"></i> Replies</span>
+                            <span class="views"><i class="fas fa-eye"></i> Views</span>
+                            <span class="activity"><i class="fas fa-clock"></i> Activity</span>
+                        </div>
+                        <div class="topic-row">
+                            <span class="topic-name"><i class="fas fa-comment-alt"></i> No Experience Beyond the Five Aggregates</span>
+                            <span class="replies">0</span>
+                            <span class="views">233</span>
+                            <span class="activity">July 2014</span>
+                        </div>
+                        <div class="topic-row">
+                            <span class="topic-name"><i class="fas fa-comment-alt"></i> How is stream entry achieved?</span>
+                            <span class="replies">38</span>
+                            <span class="views">3.5K</span>
+                            <span class="activity">5h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="commentModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeCommentModal()">×</button>
+            <div class="leave-a-comment">Leave a Comment</div>
+            <div class="form-group">
+                <label for="commentText">Comment *</label>
+                <textarea id="commentText" placeholder="Write your comment here..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nameInput">Name *</label>
+                <input type="text" id="nameInput" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label for="emailInput">Email *</label>
+                <input type="email" id="emailInput" placeholder="Your email">
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="saveInfo">
+                <label for="saveInfo">Save my name and email in this browser for the next time I comment.</label>
+            </div>
+            <button class="post-comment" onclick="submitComment()">Post Comment</button>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="part1">
+            <img src="assets/images/transparent_logo.png" alt="logo" width="260px" height="190px">
+            <div class="part1-desc">
+                <h4>Two similes are useful to keep in mind when we look at the Two similes are useful to keep in mind when we look at..</h4>
+            </div>
+        </div>
+        <div class="part2">
+            <h2>QUICK LINKS</h2>
+            <div class="part2-desc">
+                <h4><i class="fas fa-home"></i> <a href="index1_final.html">Home</a></h4>
+                <h4><i class="fas fa-info-circle"></i> <a href="#about">About</a></h4>
+                <h4><i class="fas fa-pray"></i> <a href="#sermons">Sermons</a></h4>
+                <h4><i class="fas fa-calendar"></i> <a href="index-events.html">Events</a></h4>
+            </div>
+        </div>
+        <div class="part3">
+            <h2>HAVE A QUESTION?</h2>
+            <div class="part3-desc">
+                <h4><i class="fas fa-map-marker-alt"></i> 203 Fake St. Mountain View, San Francisco, California, USA</h4>
+                <h4><i class="fas fa-phone"></i> +977 97820099</h4>
+                <h4><i class="fas fa-envelope"></i> info@gmail.com</h4>
+            </div>
+        </div>
+    </div>
+    <div class="footer-sec2">
+        <div class="line">
+            <hr class="white-line-footer">
+        </div>
+        <div class="copyright">
+            <h4>Copyright@2024 Dhamma Nature, All Rights Reserved</h4>
+            <div class="copyright-sub">
+                <h4><i class="fas fa-file-alt"></i> <a href="#terms">Terms & Conditions</a></h4>
+                <h4><i class="fas fa-shield-alt"></i> <a href="#privacy">Privacy Policy</a></h4>
+                <h4><i class="fas fa-undo"></i> <a href="#refund">Cancellation & Refund Policy</a></h4>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Show comment modal
+        function showCommentModal() {
+            document.getElementById('commentModal').style.display = 'flex';
+            document.getElementById('commentText').focus();
+        }
+
+        // Close comment modal
+        function closeCommentModal() {
+            document.getElementById('commentModal').style.display = 'none';
+            document.getElementById('commentText').value = '';
+            document.getElementById('nameInput').value = localStorage.getItem('commentName') || '';
+            document.getElementById('emailInput').value = localStorage.getItem('commentEmail') || '';
+            document.getElementById('saveInfo').checked = !!localStorage.getItem('commentName');
+        }
+
+        // Submit comment function
+        function submitComment() {
+            const commentText = document.getElementById('commentText').value.trim();
+            const name = document.getElementById('nameInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            const saveInfo = document.getElementById('saveInfo').checked;
+
+            if (!commentText || !name || !email) {
+                alert('Please fill in all required fields: Comment, Name, and Email.');
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const replyItem = document.createElement('div');
+            replyItem.classList.add('reply-item');
+            replyItem.innerHTML = `
+                <span class="reply-author"><i class="fas fa-reply"></i> ${name}</span>
+                <p class="reply-text">${commentText}</p>
+                <p class="reply-email">Posted by: ${email}</p>
+            `;
+            document.querySelector('.replies-list').appendChild(replyItem);
+
+            if (saveInfo) {
+                localStorage.setItem('commentName', name);
+                localStorage.setItem('commentEmail', email);
+            } else {
+                localStorage.removeItem('commentName');
+                localStorage.removeItem('commentEmail');
+            }
+
+            closeCommentModal();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved info on page load
+            window.addEventListener('load', () => {
+                const savedName = localStorage.getItem('commentName');
+                const savedEmail = localStorage.getItem('commentEmail');
+                if (savedName) document.getElementById('nameInput').value = savedName;
+                if (savedEmail) document.getElementById('emailInput').value = savedEmail;
+                if (savedName && savedEmail) document.getElementById('saveInfo').checked = true;
+            });
+
+            // Hover effects for navigation
+            document.querySelectorAll('.nav-item, .category-item, .tag-item').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.backgroundColor = '#f0f0f0';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.backgroundColor = 'transparent';
+                });
+            });
+
+            // Handle click events for nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const itemText = item.querySelector('span').textContent.toLowerCase();
+                    if (itemText === 'roles') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        console.log(`${itemText} clicked`);
+                    }
+                });
+            });
+
+            // Topic row click event
+            document.querySelectorAll('.topic-row').forEach(row => {
+                row.addEventListener('click', () => {
+                    console.log('Topic clicked');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dharma Club</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+Devanagari:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+
+    
+        * {
+            font-family: "Gentium Plus", sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+    }
+
+    /*
+    .header-main img {
+        height: 10px;
+        width: 10px;
+
+    }
+        yesto lekhera img lai target hudaina hai
+    */
+
+    .header-main .logo {
+        height: 180px;
+        width: auto;
+        padding-left: 190px;
+    }
+    .header-img {
+        height: 900px;
+        width: 100%;
+    }
+
+    .line-container {
+        position: absolute;
+        top: 40px;
+        color: rgb(255, 255, 255);
+        border: none;
+        width: 80%;
+        margin: 14px 230px;
+    }
+
+    .white-line {
+        border-top: 1px white;
+        width: 90%;
+        margin-left: 30px;
+    }
+
+
+
+    .header-img img { 
+        height: 68%; width: 100%; object-fit: cover; 
+    }
+
+
+    .header-top {
+      color: #fff;
+      padding: 5px 310px;
+      font-size: 16px;
+      position: absolute;
+      top: 10px;
+      font-weight: normal;
+      display: flex;
+      flex-direction: row;
+    }
+
+
+    .social-media {
+        position: absolute;
+        left: 1410px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .justify-content-center {
+        border: 1px solid white;
+        height: 56px;
+        margin-top: -14px;
+        
+    }
+
+    .location {
+    margin: 0;
+    color: #fff;
+    }
+
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      color: white;
+      width: 100%;
+      padding-right: 260px;
+      position: absolute;
+      top: 60px;;
+    }
+
+
+    nav {
+      display: flex;
+      align-items: center;
+      margin-top: -110px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 22px;
+    }
+
+    nav a.donate-btn {
+      background-color: #065B0B;
+      padding: 5px 15px;
+      border-radius: 56px;
+      color: #fff;
+      border: #006015;
+    }
+
+    .container {
+        display: flex;
+        position: absolute;
+        top: 290px;
+        left: 430px;
+        color: white;
+        flex-direction: column;
+        gap: 0px;
+    }
+
+
+    .container h2 {
+       padding-left: 340px;
+       font-size: 30px;
+    }
+
+    .container h1 {
+        padding-left: 350px;
+        font-size: 52px;
+    }
+
+
+
+
+
+
+        /*footer suru vayo */
+            .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding-top: 40px;
+            background-color: black;
+            color: white;
+        }
+
+        .footer-sec2 {
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            color: white;
+        }
+
+        .white-line-footer {
+            width: 80%;
+            background-color: white;
+            margin-top: 20px;
+            margin-left: 210px;
+        }
+
+        .part1 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .part1-desc {
+            padding-left: 48px;
+            padding-right: 12px;
+            width: 400px;
+            font-weight: normal;
+        }
+
+        .part1 img {
+            padding-top: 20px;
+        }
+
+        .part2 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part2 h2 {
+            padding-top: 16px;
+        }
+
+        .part2-desc {
+            padding-top: 20px;
+            font-weight: normal;
+        }
+
+        .part3 {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+
+        .part3 h2 {
+            padding-top: 16px;
+        }
+
+        .part3-desc {
+            padding-top: 20px;
+            font-weight: normal;
+            padding-right: 20px;
+        }
+
+        .copyright {
+            display: flex;
+            flex-direction: row;
+            padding-left: 240px;
+            padding-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .copyright-sub {
+            display: flex;
+            flex-direction: row;
+            padding-left: 580px;
+            gap: 40px;
+        }
+
+        .newsletter {
+            display: flex;
+            flex-direction: column;
+            padding-top: 4px;
+            margin: 0;
+        }
+
+        .newsletter-container {
+            display: flex;
+            background-color: rgb(255, 208, 0);
+            width: 1500px;
+            transform: translateY(30px);
+            margin-left: 220px;
+            border-radius: 18px;
+            padding-left: 60px;
+            color: black;
+            height: 80px;
+        }
+
+        
+        .newsletter h2 {
+            padding-top: 8px;
+            font-size: 32px;
+        }
+
+        .form-container {
+            padding-top: 4px;
+            padding-left: 120px;
+        }
+
+        .email-input {
+            width:  610px;
+            height: 40px;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 58px;
+            border: none;
+        }
+
+
+        .button-last {
+            transform: translateX(-142px);
+            width: 140px;
+            height: 42px;
+            background-color: #006226;
+            color: white;
+            border-radius: 58px;
+            border: none;
+        }
+
+
+
+            .container-1 {
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 490px;
+            height: 520px;
+            background-color: #EFEFEF;
+            border-radius: 14px;
+        }
+
+        .container-2 {
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 490px;
+            height: 520px;
+            background-color: #EFEFEF;
+            border-radius: 14px;
+        }
+
+        .container-3 {
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 490px;
+            height: 520px;
+            background-color: #EFEFEF;
+            border-radius: 14px;
+        }
+
+        .container-4 {
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 490px;
+            height: 520px;
+            background-color: #EFEFEF;
+            border-radius: 14px;
+        }
+
+        .section {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container-1 img {
+            width: 490px;
+            height: 310px;
+        }
+
+        .container-2 img {
+            width: 490px;
+            height: 310px;
+        }
+
+        .container-3 img {
+            width: 490px;
+            height: 310px;
+        }
+
+        .container-4 img {
+            width: 490px;
+            height: 310px;
+        }
+
+        .description-1 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .description-2 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .description-3 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .description-4 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: space-evenly;
+            margin-bottom: 40px;
+            margin-top: 40px;
+        }
+
+        .row2-start {
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+        }
+
+        button {
+            border-radius: 22px;
+            background-color: #006C04;
+            color: white;
+            width: 120px;
+            height: 40px;
+            font-weight: 700;
+            border: none; 
+            margin-top: 18px;
+        }
+
+        .red-line {
+            border: 4px solid red;
+            border-top: none; /* Removes default top border */
+            margin: 0; /* Adjusts spacing if needed */
+            position: relative;
+            top: 54px;
+            width: 76%;
+            padding-left: 40px;
+            margin: 0 auto;
+        }
+
+        .p {
+            font-weight: normal;
+            font-size: 22px;
+        }
+
+        .h2 {
+            font-size: 32px;
+        }
+
+            /* Contact Section */
+    .contact-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      max-width: 1500px;
+      margin: 20px auto;
+      transform: translateY(-140px);
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 400px;
+      background-color: #EFEFEF;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      margin: 10px 0;
+      padding: 10px;
+      border:2px solid #963D3D;
+      border-radius: 5px;
+      font-size: 16px;
+      height: 48px;
+    }
+
+    .contact-form textarea {
+      height: 270px;
+      resize: none;
+      margin-bottom: 30px;
+    }
+
+    .contact-form button {
+      background-color: #228B22;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 190px;
+      height: 50px;
+    }
+
+    .contact-image {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .text h2 {
+        position: absolute;
+        left: 10px;
+        top: 1100px;
+        color: white;
+        font-size: 60px;
+        padding-left: 40px;
+    }
+/* Responsive adjustments */
+@media (max-width: 768px) { 
+  .row {
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: center;
+  }
+
+  .col, .red-container {
+    flex: 0 0 100%; /* Full width on smaller screens */
+    max-width: 100%;
+  }
+
+  .red-container {
+    margin-top: 20px; /* Remove the lift on smaller screens for better flow */
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.social-media {
+    position: absolute;
+    left: 1410px;
+    top: 10px;
+    display: flex;
+    gap: 15px; /* Space between icons */
+    align-items: center;
+}
+
+.justify-content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Fixed width for icon container */
+    height: 40px; /* Fixed height for icon container */
+    border: 1px solid white;
+    border-radius: 50%; /* Circular border */
+    text-decoration: none;
+    color: white; /* Icon color */
+    transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+}
+
+.justify-content-center:hover {
+    background-color: #006015; /* Matches your button color */
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-img">
+            <img src="assets/images/pexels-2152214764-32117889.jpg" alt="Header Image">
+            <div class = "line-container">
+                <hr class = "white-line">
+            </div>
+            <div class="underline-img">
+                <div class="header-top">
+                    <p class="location">
+                        203 Fake St. Mountain View, San Francisco, California, USA
+                    </p>
+                    <div class = "social-media">
+                        <a href="https://www.facebook.com" target="_blank" class="justify-content-center">
+                            <i class="fab fa-facebook-f"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a>
+                        <a href="https://www.twitter.com" target="_blank" class="justify-content-center">
+                            <i class="fab fa-twitter"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" class="justify-content-center">
+                            <i class="fab fa-instagram"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="header-main">
+                <img src="assets/images/transparent_logo.png" alt="Dharma Club Logo" class="logo">
+                <nav>  <!--nav afai div ko kaam gari raxa jasto xah -->
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Sermons</a>
+                    <a href="#">Events</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Contact</a>
+                    <a href="#" class="donate-btn">Donate</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--end of nav bar-->
+    <main>
+        </section>
+        <section class = "hero">
+            <div class = "container">
+                <h2>HOME   >>   CONTACT US   >></h2>
+                <h1 class = "mb-3">CONTACT US</h1>                
+            </div>
+        </section>
+        <section class="contact-section">
+            <div class="contact-form">
+                <form>
+                    <input type="text" id = "Name"placeholder="Your Name" required>
+                    <div id = "NameError" style: color:green> </div>
+                    <input type="email" id = "Email" placeholder="Your Email" required>
+                    <div id = "EmailError" style: color:green> </div>
+                    <input type="text" id = "Subject" placeholder="Subject" required>
+                    <div id = "SubjectError" style: color:green> </div>
+                    <textarea placeholder="Message" id = "Message" required></textarea>
+                    <div id = "MessageError" style: color:green> </div>
+                    <button type="submit" onclick= "onClickSubmit ()">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-image">
+                <img src="assets/images/pexels-koithyr-1360255.jpg" alt="Group Image">
+            </div>
+        </section>
+    </main>
+    <script>
+        function onClickSubmit() {
+            console.log("Login successfully.");
+            const name = document.getElementById("Name").value;
+    const email = document.getElementById("Email").value;
+    const subject = document.getElementById("Subject").value;
+    const message = document.getElementById("Message").value;
+
+    console.log (`Name: ${name}`);
+    console.log (`Email: ${email}`);
+  }
+
+  const toggleBtn = document.querySelector('.theme-toggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+
+  // Form validation
+  const form = document.getElementById('contactForm');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form submission
+
+    // Get values
+    const name = document.getElementById('Name').value.trim();
+    const email = document.getElementById('Email').value.trim();
+    const subject = document.getElementById('Subject').value.trim();
+    const message = document.getElementById('Message').value.trim();
+
+    // Clear errors
+    document.getElementById('NameError').innerText = '';
+    document.getElementById('EmailError').innerText = '';
+    document.getElementById('SubjectError').innerText = '';
+    document.getElementById('MessageError').innerText = '';
+
+    let hasError = false;
+
+    // Validate Name
+    if (name === '') {
+      document.getElementById('NameError').innerText = 'Please enter your name.';
+      hasError = true;
+    }
+
+    // Validate Email
+    if (email === '') {
+      document.getElementById('EmailError').innerText = 'Please enter your email.';
+      hasError = true;
+    } else if (!email.includes('@')) {
+      document.getElementById('EmailError').innerText = 'Email must contain @.';
+      hasError = true;
+    }
+
+    // Validate Subject
+    if (subject === '') {
+      document.getElementById('SubjectError').innerText = 'Please enter a subject.';
+      hasError = true;
+    }
+
+    // Validate Message
+    if (message === '') {
+      document.getElementById('MessageError').innerText = 'Please enter a message.';
+      hasError = true;
+    }
+
+    // Example switch usage: show log based on subject
+    switch(subject.toLowerCase()) {
+      case 'hello':
+        console.log('User said hello.');
+        break;
+      case 'help':
+        console.log('User needs help.');
+        break;
+      default:
+        console.log('General message subject.');
+    }
+
+    // If no errors, submit or do something
+    if (!hasError) {
+      alert('Form submitted successfully!');
+      form.reset();
+    }
+  });
+</script>
+        </section>
+            <div class = "newsletter-container">
+            <div class = "newsletter">
+                <h2>Sign Up And Subscribe to our Newsletter</h2>
+            </div>
+            <div class = "form-container">
+                <!-- Replace the action attribute with your form handling URL -->
+                <form action="#" method="post">
+                    <input type="email" placeholder="Enter your email" required class = "email-input">
+                    <button type="submit" class = "button-last">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class = "footer">
+            <div class = "part1">
+                <img src = "assets/images/transparent_logo.png" alt = "logo" width = "260px" height = "190px">
+                <div class = "part1-desc">
+                    <h4>Two similes are useful to keep in mind when we look at the Two similes
+                    are useful to keep in mind when we look at..</h2>
+                </div>
+            </div>
+            <div class = "part2">
+                <h2>QUICK LINKS</h2>
+                <div class = "part2-desc">
+                    <h4>Home</h4>
+                    <h4>About</h4>
+                    <h4>Sermons</h4>
+                    <h4>Events</h4>
+                </div>
+            </div>
+            <div class = "part3">
+                <h2>HAVE A QUESTION?</h2>
+                <div class = "part3-desc">
+                    <h4>203 Fake St. Mountain View, San Francisco, California, USA</h4>
+                    <h4>+977 97820099</h4>
+                    <h4>info@gmail.com</h4>
+                </div>
+            </div>
+        </div>
+        <div class = "footer-sec2">
+            <div class = "line">
+                <hr class = "white-line-footer">
+            </div>
+            <div class = "copyright">
+                <h4>Copyright@2024 Dhamma Nature, All Rights Reserved</h4>
+                <div class = "copyright-sub">
+                    <h4>Terms & Conditions</h4>
+                    <h4>Privacy Policy</h4>
+                    <h4>Cancellation & Refund Policy</h4>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

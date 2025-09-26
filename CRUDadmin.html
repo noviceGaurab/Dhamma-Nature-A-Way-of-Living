@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Tables - Dhamma Nature Admin Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .admin-panel {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: #fff;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .profile-picture {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 2px solid #1abc9c;
+        }
+
+        .profile-section h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .profile-section p {
+            font-size: 0.9em;
+            color: #bdc3c7;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5em;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #34495e;
+        }
+
+        .sidebar ul li a.active {
+            background-color: #1abc9c;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #fff;
+            min-height: 100vh;
+        }
+
+        .main-content h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .crud-section {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        #users { background-color: #e8f5e9; }
+        #sermons { background-color: #e3f2fd; }
+        #sermon_images { background-color: #e0f7fa; }
+        #discussions { background-color: #f3e5f5; }
+        #events { background-color: #fff3e0; }
+        #galleries { background-color: #e0f7fa; }
+        #donation_types { background-color: #fce4ec; }
+        #donations { background-color: #fce4ec; }
+        #comments { background-color: #f1f8e9; }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            table th, table td {
+                padding: 8px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .main-content {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .sidebar {
+            animation: slideIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-panel">
+        <div class="sidebar">
+            <div class="profile-section">
+                <img id="profilePicture" class="profile-picture" src="https://example.com/images/default.jpg" alt="Profile Picture">
+                <h3 id="profileEmail">admin@example.com</h3>
+                <p id="profileRole">Admin</p>
+            </div>
+            <h2>Database Tables</h2>
+            <ul>
+                <li><a href="#users" class="active">Users</a></li>
+                <li><a href="#sermons">Sermons</a></li>
+                <li><a href="#sermon_images">Sermon Images</a></li>
+                <li><a href="#discussions">Discussions</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#galleries">Galleries</a></li>
+                <li><a href="#donation_types">Donation Types</a></li>
+                <li><a href="#donations">Donations</a></li>
+                <li><a href="#comments">Comments</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <section id="users" class="crud-section">
+                <h1>Users</h1>
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>email</th>
+                            <th>password</th>
+                            <th>registration_date</th>
+                            <th>role</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section id="sermons" class="crud-section" style="display: none;">
+                <h1>Sermons</h1>
+                <table id="sermonsTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>date</th>
+                            <th>teacher_name</th>
+                            <th>duration</th>
+                            <th>description</th>
+                            <th>pdf_url</th>
+                            <th>audio_url</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section id="sermon_images" class="crud-section" style="display: none;">
+                <h1>Sermon Images</h1>
+                <table id="sermonImagesTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>sermon_id</th>
+                            <th>image_url</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section id="discussions" class="crud-section" style="display: none;">
+                <h1>Discussions</h1>
+                <table id="discussionsTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>user_thought</th>
+                            <th>date</th>
+                            <th>user_id</th>
+                            <th>author</th>
+                            <th>replies</th>
+                            <th>views</th>
+                            <th>likes</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section id="events" class="crud-section" style="display: none;">
+                <h1>Events</h1>
+                <table id="eventsTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>date</th>
+                            <th>location</th>
+                            <th>cost</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section id="galleries" class="crud-section" style="display: none;">
+                <h1>Galleries</h1>
+                <table id="galleriesTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>image_url</th>
+                            <th>description</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section id="donation_types" class="crud-section" style="display: none;">
+                <h1>Donation Types</h1>
+                <table id="donationTypesTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section id="donations" class="crud-section" style="display: none;">
+                <h1>Donations</h1>
+                <table id="donationsTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>user_id</th>
+                            <th>first_name</th>
+                            <th>last_name</th>
+                            <th>date</th>
+                            <th>amount</th>
+                            <th>donation_id</th>
+                            <th>donation_type_id</th>
+                            <th>donation_method</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section id="comments" class="crud-section" style="display: none;">
+                <h1>Comments</h1>
+                <table id="commentsTable">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>content</th>
+                            <th>author</th>
+                            <th>user_id</th>
+                            <th>discussion_id</th>
+                            <th>created_at</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Simulate logged-in admin
+        const loggedInAdmin = {
+            email: 'admin@example.com',
+            role: 'Admin',
+            profilePicture: 'https://example.com/images/admin.jpg'
+        };
+
+        // Populate profile section
+        function loadProfile() {
+            document.getElementById('profilePicture').src = loggedInAdmin.profilePicture || 'https://example.com/images/default.jpg';
+            document.getElementById('profileEmail').textContent = loggedInAdmin.email;
+            document.getElementById('profileRole').textContent = loggedInAdmin.role;
+        }
+
+        // Sidebar navigation
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.crud-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.querySelector(this.getAttribute('href')).style.display = 'block';
+                document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Load profile on page load
+        loadProfile();
+    </script>
+</body>
+</html>
